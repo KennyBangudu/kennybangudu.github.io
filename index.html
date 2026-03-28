@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kenny Bangudu — Senior UX Researcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================
+       TOKENS & RESET
+    ============================ */
+    :root {
+      --sand:    #FAF7F2;
+      --warm:    #F2EDE4;
+      --clay:    #C47E5A;
+      --clay-lt: #D9A07E;
+      --ink:     #2C2218;
+      --ink-md:  #5C4D3E;
+      --ink-lt:  #9A8878;
+      --cream:   #FDF9F5;
+      --teal:    #3D7A78;
+      --teal-lt: #6AA8A6;
+      --accent:  #E8724A;
+      --border:  #E4DDD4;
+      --r:       12px;
+      --r-lg:    20px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--sand);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ============================
+       NAV
+    ============================ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250,247,242,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: 'Lora', serif;
+      font-size: 1.1rem;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--ink-md);
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--clay); }
+
+    /* ============================
+       HERO
+    ============================ */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 64px;
+    }
+
+    .hero-left {
+      background: var(--warm);
+      padding: 8% 6% 8% 8%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left::before {
+      content: '';
+      position: absolute;
+      bottom: -120px; right: -120px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(196,126,90,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-name {
+      font-family: 'Lora', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--clay);
+    }
+
+    .hero-title {
+      font-size: 1.1rem;
+      color: var(--ink-md);
+      font-weight: 400;
+      margin-bottom: 2rem;
+    }
+
+    .hero-quote {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--ink-lt);
+      border-left: 3px solid var(--clay-lt);
+      padding-left: 1rem;
+      margin-bottom: 2.5rem;
+      max-width: 420px;
+    }
+
+    .hero-ctas {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--clay);
+      color: #fff;
+      padding: 0.75rem 1.75rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.2s;
+      border: none; cursor: pointer;
+    }
+
+    .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--ink-md);
+      padding: 0.75rem 1.75rem;
+      border-radius: 40px;
+      border: 1.5px solid var(--border);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-outline:hover { border-color: var(--clay); color: var(--clay); }
+
+    .hero-right {
+      background: var(--clay);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 6%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      top: -80px; left: -80px;
+      width: 300px; height: 300px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--r);
+      padding: 1.5rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .stat-number {
+      font-family: 'Lora', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.72);
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .hero-companies {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .company-pill {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.9);
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 0.35rem 0.85rem;
+      border-radius: 20px;
+      letter-spacing: 0.03em;
+    }
+
+    /* ============================
+       SECTIONS COMMON
+    ============================ */
+    section { padding: 6rem 8%; }
+
+    .section-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--ink);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .section-sub {
+      color: var(--ink-md);
+      max-width: 600px;
+      font-size: 1.05rem;
+      margin-bottom: 3rem;
+    }
+
+    /* ============================
+       ABOUT
+    ============================ */
+    #about {
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--ink-md);
+      margin-bottom: 1.2rem;
+      font-size: 1.02rem;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .skill-group-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-lt);
+      margin-bottom: 0.6rem;
+    }
+
+    .skill-tags {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+
+    .skill-tag {
+      background: var(--warm);
+      border: 1px solid var(--border);
+      color: var(--ink-md);
+      font-size: 0.8rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 6px;
+    }
+
+    /* ============================
+       CASE STUDIES
+    ============================ */
+    #work {
+      background: var(--sand);
+    }
+
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.75rem;
+    }
+
+    .case-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 2rem;
+      cursor: pointer;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .case-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--clay);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .case-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(44,34,24,0.1);
+      border-color: var(--clay-lt);
+    }
+
+    .case-card:hover::before { transform: scaleX(1); }
+
+    .case-card.featured {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      background: linear-gradient(135deg, #FDF9F5 60%, #F5EDE4);
+    }
+
+    .case-meta {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .case-company {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--warm);
+      border: 1px solid var(--border);
+      color: var(--ink-lt);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    .case-method {
+      font-size: 0.72rem;
+      color: var(--teal);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: rgba(61,122,120,0.08);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    .case-date {
+      font-size: 0.72rem;
+      color: var(--ink-lt);
+      margin-left: auto;
+    }
+
+    .case-title {
+      font-family: 'Lora', serif;
+      font-size: 1.25rem;
+      color: var(--ink);
+      margin-bottom: 0.7rem;
+      line-height: 1.3;
+    }
+
+    .case-desc {
+      color: var(--ink-md);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+    }
+
+    .case-stats {
+      display: flex; gap: 1.5rem; flex-wrap: wrap;
+    }
+
+    .case-stat {
+      text-align: left;
+    }
+
+    .case-stat-n {
+      font-family: 'Lora', serif;
+      font-size: 1.4rem;
+      color: var(--clay);
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .case-stat-l {
+      font-size: 0.75rem;
+      color: var(--ink-lt);
+      margin-top: 0.1rem;
+    }
+
+    .case-insights {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+    }
+
+    .insight-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-lt);
+      margin-bottom: 0.75rem;
+    }
+
+    .insight-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .insight-list li {
+      font-size: 0.875rem;
+      color: var(--ink-md);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      line-height: 1.5;
+    }
+
+    .insight-list li::before {
+      content: '→';
+      color: var(--clay);
+      flex-shrink: 0;
+      font-size: 0.8rem;
+      margin-top: 0.15rem;
+    }
+
+    .case-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      color: var(--clay);
+      font-weight: 600;
+      margin-top: 1.2rem;
+    }
+
+    /* ============================
+       MODAL
+    ============================ */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(44,34,24,0.5);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: var(--cream);
+      border-radius: var(--r-lg);
+      max-width: 780px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 2.5rem;
+      position: relative;
+      box-shadow: 0 32px 80px rgba(44,34,24,0.2);
+      animation: modalIn 0.3s ease;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .modal-close {
+      position: sticky;
+      top: 0;
+      float: right;
+      background: var(--warm);
+      border: 1px solid var(--border);
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: var(--ink-md);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: -1rem;
+      transition: background 0.2s;
+    }
+
+    .modal-close:hover { background: var(--clay); color: #fff; }
+
+    .modal-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-title {
+      font-family: 'Lora', serif;
+      font-size: 1.7rem;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+      line-height: 1.25;
+    }
+
+    .modal-subtitle {
+      color: var(--ink-lt);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-section {
+      margin-bottom: 1.75rem;
+    }
+
+    .modal-section h4 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-lt);
+      margin-bottom: 0.6rem;
+    }
+
+    .modal-section p {
+      color: var(--ink-md);
+      font-size: 0.93rem;
+      line-height: 1.7;
+    }
+
+    .modal-section ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .modal-section li {
+      font-size: 0.9rem;
+      color: var(--ink-md);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      line-height: 1.55;
+    }
+
+    .modal-section li::before {
+      content: '→';
+      color: var(--clay);
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .modal-pills {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;
+    }
+
+    .modal-pill {
+      background: var(--warm);
+      border: 1px solid var(--border);
+      color: var(--ink-md);
+      font-size: 0.78rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 6px;
+    }
+
+    .modal-impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 0.75rem;
+    }
+
+    .impact-box {
+      background: var(--warm);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .impact-box .n {
+      font-family: 'Lora', serif;
+      font-size: 1.6rem;
+      color: var(--clay);
+      display: block;
+      line-height: 1;
+    }
+
+    .impact-box .l {
+      font-size: 0.75rem;
+      color: var(--ink-lt);
+      margin-top: 0.2rem;
+    }
+
+    /* ============================
+       RESUME / CV
+    ============================ */
+    #resume {
+      background: var(--warm);
+    }
+
+    .resume-layout {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr;
+      gap: 4rem;
+    }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 12px 1fr;
+      gap: 0 1.2rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+
+    .exp-dot {
+      width: 12px; height: 12px;
+      background: var(--clay);
+      border-radius: 50%;
+      margin-top: 0.3rem;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .exp-dot::after {
+      content: '';
+      position: absolute;
+      top: 12px; left: 5px;
+      width: 2px;
+      height: calc(100% + 2.5rem - 12px);
+      background: var(--border);
+    }
+
+    .exp-item:last-child .exp-dot::after { display: none; }
+
+    .exp-role {
+      font-weight: 600;
+      color: var(--ink);
+      font-size: 1rem;
+    }
+
+    .exp-company {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      color: var(--clay);
+      font-size: 0.95rem;
+    }
+
+    .exp-date {
+      font-size: 0.78rem;
+      color: var(--ink-lt);
+      margin-bottom: 0.6rem;
+    }
+
+    .exp-desc {
+      font-size: 0.88rem;
+      color: var(--ink-md);
+      line-height: 1.65;
+    }
+
+    .edu-item {
+      margin-bottom: 1.25rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .edu-item:last-child { border-bottom: none; }
+
+    .edu-degree {
+      font-weight: 600;
+      font-size: 0.93rem;
+      color: var(--ink);
+    }
+
+    .edu-school {
+      font-size: 0.85rem;
+      color: var(--ink-md);
+    }
+
+    .edu-note {
+      font-size: 0.78rem;
+      color: var(--clay);
+      font-weight: 500;
+    }
+
+    /* ============================
+       CONTACT
+    ============================ */
+    #contact {
+      background: var(--clay);
+      text-align: center;
+      padding: 6rem 8%;
+    }
+
+    #contact .section-tag { color: rgba(255,255,255,0.65); }
+    #contact .section-title { color: #fff; }
+    #contact .section-sub { color: rgba(255,255,255,0.78); max-width: 480px; margin: 0 auto 2.5rem; }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .contact-link:hover { background: rgba(255,255,255,0.22); }
+
+    /* ============================
+       FOOTER
+    ============================ */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.78rem;
+    }
+
+    /* ============================
+       ANIMATIONS
+    ============================ */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================
+       RESPONSIVE
+    ============================ */
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-right { min-height: 380px; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      #about { grid-template-columns: 1fr; gap: 3rem; }
+      .cases-grid { grid-template-columns: 1fr; }
+      .case-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+      .resume-layout { grid-template-columns: 1fr; }
+      section { padding: 4rem 5%; }
+      .modal-impact-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero-stats { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .stat-number { font-size: 1.7rem; }
+      .modal { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">Kenny Bangudu</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">UX Research Portfolio</p>
+    <h1 class="hero-name">Kenny<br /><em>Bangudu</em></h1>
+    <p class="hero-title">Senior UX Researcher &mdash; Driving Insight-Led Innovation Across Enterprise Platforms</p>
+    <blockquote class="hero-quote">
+      &ldquo;Supposing is good but finding out is better.&rdquo; &mdash; Mark Twain
+    </blockquote>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="#work">View Case Studies</a>
+      <a class="btn-outline" href="#contact">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-number">8+</div>
+        <div class="stat-label">Years UX Research Experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">85k+</div>
+        <div class="stat-label">Employees impacted at Cisco</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">65%</div>
+        <div class="stat-label">First-quarter adoption on AI comparison tool</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">70%+</div>
+        <div class="stat-label">Feature adoption at Meta post-launch</div>
+      </div>
+    </div>
+    <div class="hero-companies">
+      <span class="company-pill">Cisco Systems</span>
+      <span class="company-pill">Meta</span>
+      <span class="company-pill">NIH / NCI</span>
+      <span class="company-pill">Schweitzer Eng. Labs</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-text fade-up">
+    <p class="section-tag">About Me</p>
+    <h2 class="section-title">Research that puts people at the center</h2>
+    <p>I'm a Senior UX Researcher with 7+ years driving research strategy for enterprise platforms, B2B tools, and AI-powered products at Cisco, Meta, NIH/NCI, and Schweitzer Engineering Labs. My work consistently centers on one goal: translating complex human needs into product decisions that create real adoption and impact.</p>
+    <p>My path into UX is a bit unconventional — and I think that's a strength. I spent 12 years in sales leadership, including 7 years managing a $6M/month regional territory and a 25-person team. I know how decisions get made inside organizations, how to frame research for executives, and how to connect user insight to business outcomes. That's not something you learn in a research methods class.</p>
+    <p>I went back to school for a graduate degree in Human Factors Psychology (GPA 3.89) and an MBA, and moved into UX research from there. At Cisco I've led research across the App Store, Approvals Tool, and Profile Service — shaping AI-assisted workflows, enterprise approval platforms, and intranet personalization for 85,000+ employees.</p>
+    <p>I specialize in mixed-methods work: large-scale Qualtrics surveys, in-depth interviews, usability testing via Maze and UserTesting, and thematic analysis — always designed to be decision-ready for the stakeholders who matter most.</p>
+    <p style="font-family: 'Lora', serif; font-style: italic; color: var(--clay); margin-top: 1.5rem;">M.Sc. Human Factors Psychology &mdash; University of Idaho &nbsp;|&nbsp; MBA &mdash; University of Ilorin</p>
+  </div>
+
+  <div class="skills-grid fade-up" style="transition-delay: 0.15s;">
+    <div>
+      <p class="skill-group-label">Research Methods</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Surveys</span>
+        <span class="skill-tag">In-Depth Interviews</span>
+        <span class="skill-tag">Usability Testing</span>
+        <span class="skill-tag">A/B Testing</span>
+        <span class="skill-tag">Diary Studies</span>
+        <span class="skill-tag">Concept Testing</span>
+        <span class="skill-tag">Kano Modeling</span>
+        <span class="skill-tag">Thematic Analysis</span>
+        <span class="skill-tag">Intercept Studies</span>
+      </div>
+    </div>
+    <div>
+      <p class="skill-group-label">Tools &amp; Platforms</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Qualtrics</span>
+        <span class="skill-tag">Maze</span>
+        <span class="skill-tag">UserTesting</span>
+        <span class="skill-tag">Dovetail</span>
+        <span class="skill-tag">Figma</span>
+        <span class="skill-tag">Miro</span>
+        <span class="skill-tag">Optimal Workshop</span>
+        <span class="skill-tag">Jira</span>
+        <span class="skill-tag">Confluence</span>
+      </div>
+    </div>
+    <div>
+      <p class="skill-group-label">Domains</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Enterprise Platforms</span>
+        <span class="skill-tag">AI Products</span>
+        <span class="skill-tag">Approval Workflows</span>
+        <span class="skill-tag">Intranet / Portals</span>
+        <span class="skill-tag">SaaS &amp; B2B Tools</span>
+        <span class="skill-tag">Admin Tooling</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="work">
+  <p class="section-tag">Selected Work</p>
+  <h2 class="section-title">Case Studies</h2>
+  <p class="section-sub">A selection of research projects across enterprise AI, approvals, and platform discovery.</p>
+
+  <div class="cases-grid">
+
+    <!-- FEATURED: Approvals Discovery -->
+    <div class="case-card featured fade-up" onclick="openModal('approvals-discovery')">
+      <div>
+        <div class="case-meta">
+          <span class="case-company">Cisco</span>
+          <span class="case-method">Mixed Methods</span>
+          <span class="case-date">May 2025</span>
+        </div>
+        <h3 class="case-title">Approvals Experience Discovery Study</h3>
+        <p class="case-desc">Uncovering the pain and opportunity hidden across five fragmented approval systems used by Cisco's executives, EAs, and managers. A 45-day generative research sprint that reshaped the roadmap.</p>
+        <div class="case-stats">
+          <div class="case-stat">
+            <div class="case-stat-n">19</div>
+            <div class="case-stat-l">In-depth interviews</div>
+          </div>
+          <div class="case-stat">
+            <div class="case-stat-n">130</div>
+            <div class="case-stat-l">Survey respondents</div>
+          </div>
+          <div class="case-stat">
+            <div class="case-stat-n">5+</div>
+            <div class="case-stat-l">Systems studied</div>
+          </div>
+        </div>
+        <span class="case-arrow">Read case study →</span>
+      </div>
+      <div class="case-insights">
+        <p class="insight-label">Key Findings</p>
+        <ul class="insight-list">
+          <li>Tool fragmentation — navigating 5+ systems — is the single biggest barrier</li>
+          <li>Delegation workflows are inconsistent and policy-constrained, frustrating EAs</li>
+          <li>Strong demand for a centralized approvals hub and digest email notifications</li>
+          <li>Mobile access is essential for executives managing approvals on the go</li>
+          <li>Findings secured buy-in for centralized platform development</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- AI Compare Feature -->
+    <div class="case-card fade-up" onclick="openModal('ai-compare')" style="transition-delay: 0.05s;">
+      <div class="case-meta">
+        <span class="case-company">Cisco App Store</span>
+        <span class="case-method">Unmoderated UT</span>
+        <span class="case-date">May 2024</span>
+      </div>
+      <h3 class="case-title">Apps AI Compare Feature &amp; Recommendation System Research</h3>
+      <p class="case-desc">Evaluating appetite for AI-powered app comparison and recommendations among 79 employees across 5 countries — directly influencing a feature launch that drove 65% adoption in Q1.</p>
+      <div class="case-stats">
+        <div class="case-stat">
+          <div class="case-stat-n">79</div>
+          <div class="case-stat-l">Participants</div>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-n">65%</div>
+          <div class="case-stat-l">Adoption, Q1 post-launch</div>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-n">+30%</div>
+          <div class="case-stat-l">App Store engagement</div>
+        </div>
+      </div>
+      <span class="case-arrow">Read case study →</span>
+    </div>
+
+    <!-- Profile Service Discovery -->
+    <div class="case-card fade-up" onclick="openModal('profile-discovery')" style="transition-delay: 0.1s;">
+      <div class="case-meta">
+        <span class="case-company">Cisco Intranet</span>
+        <span class="case-method">Survey &amp; Quant</span>
+        <span class="case-date">Sept 2025</span>
+      </div>
+      <h3 class="case-title">Profile Service Discovery Survey</h3>
+      <p class="case-desc">A large-scale survey of 4,000 intranet users exploring personalization preferences, transparency expectations, and comfort with data-driven content — shaping Cisco's intranet roadmap.</p>
+      <div class="case-stats">
+        <div class="case-stat">
+          <div class="case-stat-n">446</div>
+          <div class="case-stat-l">Respondents</div>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-n">77%</div>
+          <div class="case-stat-l">Want algorithmic transparency</div>
+        </div>
+      </div>
+      <span class="case-arrow">Read case study →</span>
+    </div>
+
+    <!-- Proxy Usability -->
+    <div class="case-card fade-up" onclick="openModal('proxy-usability')" style="transition-delay: 0.15s;">
+      <div class="case-meta">
+        <span class="case-company">Cisco Approvals</span>
+        <span class="case-method">Usability Testing</span>
+        <span class="case-date">Feb 2025</span>
+      </div>
+      <h3 class="case-title">Proxy Setting Usability Testing</h3>
+      <p class="case-desc">A mixed-method usability study — 8 moderated + 8 unmoderated sessions — evaluating a new proxy delegation feature before launch, surfacing a 52% error rate that changed the design.</p>
+      <div class="case-stats">
+        <div class="case-stat">
+          <div class="case-stat-n">16</div>
+          <div class="case-stat-l">Participants</div>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-n">52%</div>
+          <div class="case-stat-l">Error rate uncovered</div>
+        </div>
+      </div>
+      <span class="case-arrow">Read case study →</span>
+    </div>
+
+    <!-- AI Assistant Analysis -->
+    <div class="case-card fade-up" onclick="openModal('ai-assistant')" style="transition-delay: 0.05s;">
+      <div class="case-meta">
+        <span class="case-company">Cisco AI</span>
+        <span class="case-method">Secondary Analysis</span>
+        <span class="case-date">Aug 2025</span>
+      </div>
+      <h3 class="case-title">Analyzing Approval Question Patterns in an AI Assistant</h3>
+      <p class="case-desc">Thematic analysis of 489 real user queries submitted to Cisco's internal AI assistant — categorizing approval needs to shape MCP integration priorities.</p>
+      <div class="case-stats">
+        <div class="case-stat">
+          <div class="case-stat-n">489</div>
+          <div class="case-stat-l">AI queries analyzed</div>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-n">4</div>
+          <div class="case-stat-l">Core workflow categories surfaced</div>
+        </div>
+      </div>
+      <span class="case-arrow">Read case study →</span>
+    </div>
+
+    <!-- Apps Category Rationalization -->
+    <div class="case-card fade-up" onclick="openModal('app-categories')" style="transition-delay: 0.1s;">
+      <div class="case-meta">
+        <span class="case-company">Cisco App Store</span>
+        <span class="case-method">Survey</span>
+        <span class="case-date">June 2025</span>
+      </div>
+      <h3 class="case-title">Apps Category Rationalization Research</h3>
+      <p class="case-desc">Evaluating how 86 employees across three global regions perceived app categories, the Featured section, and AI app discovery — resulting in a category redesign and AI section launch.</p>
+      <div class="case-stats">
+        <div class="case-stat">
+          <div class="case-stat-n">86</div>
+          <div class="case-stat-l">Respondents</div>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-n">79%</div>
+          <div class="case-stat-l">Interest in an AI category</div>
+        </div>
+      </div>
+      <span class="case-arrow">Read case study →</span>
+    </div>
+
+    <!-- Engineering IT -->
+    <div class="case-card fade-up" onclick="openModal('engineering-it')" style="transition-delay: 0.15s;">
+      <div class="case-meta">
+        <span class="case-company">Cisco EngIT</span>
+        <span class="case-method">Intercept + Interviews</span>
+        <span class="case-date">Mar 2024</span>
+      </div>
+      <h3 class="case-title">Engineering IT UX Research</h3>
+      <p class="case-desc">A mixed-method study of a Confluence-based platform serving 20k engineers — 792 intercept survey responses and 20 interviews led to the platform's full decommission and strategic migration.</p>
+      <div class="case-stats">
+        <div class="case-stat">
+          <div class="case-stat-n">792</div>
+          <div class="case-stat-l">Survey responses</div>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-n">20k</div>
+          <div class="case-stat-l">Engineers impacted</div>
+        </div>
+      </div>
+      <span class="case-arrow">Read case study →</span>
+    </div>
+
+    <!-- Meta PPQ -->
+    <div class="case-card fade-up" onclick="openModal('meta-ppq')" style="transition-delay: 0.2s;">
+      <div class="case-meta">
+        <span class="case-company">Meta</span>
+        <span class="case-method">Prototype Testing</span>
+        <span class="case-date">Oct 2022</span>
+      </div>
+      <h3 class="case-title">Pending Post Queue &amp; Remind Me Feature Research</h3>
+      <p class="case-desc">Prototype testing with 20 Facebook Group Admins to validate two new moderation features — resulting in 70%+ adoption post-launch and 50% faster post approvals.</p>
+      <div class="case-stats">
+        <div class="case-stat">
+          <div class="case-stat-n">70%+</div>
+          <div class="case-stat-l">Feature adoption at launch</div>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-n">50%</div>
+          <div class="case-stat-l">Faster post approvals</div>
+        </div>
+      </div>
+      <span class="case-arrow">Read case study →</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume">
+  <p class="section-tag">Background</p>
+  <h2 class="section-title">Resume</h2>
+  <p class="section-sub">8+ years of research experience across enterprise, AI, and social platforms.</p>
+
+  <div class="resume-layout">
+    <div>
+      <p class="skill-group-label" style="margin-bottom: 1.5rem;">Professional Experience</p>
+
+      <div class="exp-item fade-up">
+        <div class="exp-dot"></div>
+        <div>
+          <div class="exp-role">Senior UX Researcher</div>
+          <div class="exp-company">Cisco Systems, Inc.</div>
+          <div class="exp-date">Feb 2023 – Present &nbsp;|&nbsp; Remote (Seattle)</div>
+          <div class="exp-desc">Lead UX Research for enterprise B2B services supporting 85,000+ employees across productivity, approvals, and AI platforms. Established research roadmaps, led mixed-method programs, and directly influenced product strategy and platform modernization.</div>
+        </div>
+      </div>
+
+      <div class="exp-item fade-up" style="transition-delay: 0.08s;">
+        <div class="exp-dot"></div>
+        <div>
+          <div class="exp-role">UX Researcher (Consultant)</div>
+          <div class="exp-company">Essential Software — NCI / NIH</div>
+          <div class="exp-date">Feb 2023 – Jun 2025 &nbsp;|&nbsp; Remote</div>
+          <div class="exp-desc">Led research across federal B2B data platforms, improving usability for scientific and analytics workflows. Conducted A/B testing, card sorting, and heuristic evaluations, presenting to Office of Data Science leadership.</div>
+        </div>
+      </div>
+
+      <div class="exp-item fade-up" style="transition-delay: 0.12s;">
+        <div class="exp-dot"></div>
+        <div>
+          <div class="exp-role">UX Researcher</div>
+          <div class="exp-company">Meta (Facebook)</div>
+          <div class="exp-date">Jul 2022 – Jan 2023 &nbsp;|&nbsp; Remote (Seattle)</div>
+          <div class="exp-desc">Led research for Group Admin moderation tools used by high-volume communities. Delivered prototype testing for PPQ and "Remind Me" features with 70%+ adoption post-launch.</div>
+        </div>
+      </div>
+
+      <div class="exp-item fade-up" style="transition-delay: 0.16s;">
+        <div class="exp-dot"></div>
+        <div>
+          <div class="exp-role">Associate UX Researcher</div>
+          <div class="exp-company">Schweitzer Engineering Laboratories</div>
+          <div class="exp-date">Nov 2019 – Jun 2022 &nbsp;|&nbsp; Pullman, WA</div>
+          <div class="exp-desc">Embedded UX research into software development cycles for B2B engineering tools. Increased remote testing participation by 40% and built a 250+ user research panel.</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div style="margin-bottom: 2.5rem;">
+        <p class="skill-group-label" style="margin-bottom: 1.25rem;">Education</p>
+        <div class="edu-item fade-up">
+          <div class="edu-degree">M.Sc. Human Factors Psychology</div>
+          <div class="edu-school">University of Idaho &mdash; Moscow, ID</div>
+          <div class="edu-note">GPA: 3.89</div>
+        </div>
+        <div class="edu-item fade-up" style="transition-delay: 0.08s;">
+          <div class="edu-degree">MBA</div>
+          <div class="edu-school">University of Ilorin</div>
+        </div>
+        <div class="edu-item fade-up" style="transition-delay: 0.12s;">
+          <div class="edu-degree">B.Sc. Social Administration</div>
+          <div class="edu-school">University of Ilorin</div>
+        </div>
+      </div>
+
+      <div class="fade-up" style="transition-delay: 0.16s;">
+        <p class="skill-group-label" style="margin-bottom: 1rem;">Research Leadership &amp; Strategy</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Research Road-mapping</span>
+          <span class="skill-tag">Stakeholder Alignment</span>
+          <span class="skill-tag">Cross-functional Leadership</span>
+          <span class="skill-tag">Research Ops</span>
+          <span class="skill-tag">Vendor Management</span>
+          <span class="skill-tag">Agile UX</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-tag">Let's Talk</p>
+  <h2 class="section-title">Get in Touch</h2>
+  <p class="section-sub">Open to Senior / Lead UX Research roles, consulting engagements, and research collaborations.</p>
+  <div class="contact-links">
+    <a class="contact-link" href="/cdn-cgi/l/email-protection#58333d3031363c3d763a39363f2d3c2d183f35393134763b3735">
+      ✉ <span class="__cf_email__" data-cfemail="1279777a7b7c76773c70737c7567766752757f737b7e3c717d7f">[email&#160;protected]</span>
+    </a>
+    <a class="contact-link" href="https://www.linkedin.com/in/kennybangudu" target="_blank" rel="noopener">
+      in LinkedIn
+    </a>
+    <a class="contact-link" href="tel:+12083104294">
+      📞 (208) 310-4294
+    </a>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Kenny Bangudu &mdash; Senior UX Researcher &mdash; Lynnwood, WA
+</footer>
+
+<!-- ============================
+     MODALS
+============================ -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOnOverlay(event)">
+  <div class="modal" id="modal-content">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ========================
+  // CASE STUDY DATA
+  // ========================
+  const cases = {
+    'approvals-discovery': {
+      eyebrow: 'Cisco Systems · May 2025 · 45 Days',
+      title: 'Approvals Experience Discovery Study',
+      subtitle: 'Generative research across 19 interviews and a 130-person survey to map the end-to-end approvals landscape',
+      methods: ['In-depth Interviews (n=19)', 'Survey (n=130)', 'Thematic Analysis', 'Cross-tab Analysis'],
+      background: 'Executives and people leaders at Cisco navigate 5+ disconnected approval systems — Concur, Ariba, Workday, SmartBuy, and others — daily. This fragmentation creates cognitive overhead, delays, and a frustrating experience for busy leaders. I led a 45-day generative research initiative to map the full experience and surface opportunities for consolidation.',
+      questions: [
+        'What are users\' current experiences in the approvals process at Cisco?',
+        'How do users manage delegation and proxy approvals?',
+        'What are preferences for notifications and mobile access?',
+        'What opportunities exist for streamlining the experience?',
+      ],
+      insights: [
+        'Tool fragmentation is a major barrier — users regularly navigate 5+ systems with no unified view',
+        'Delegation is inconsistent and policy-constrained, creating friction for EAs and executives',
+        'Email overload is widespread; users want digest summaries and Webex bot options',
+        'Strong demand for a centralized platform (approvals.cisco.com) emerged across all user groups',
+        'Mobile access is essential, especially for executives approving on the go',
+      ],
+      impact: [
+        { n: '3', l: 'Regions covered (AMER, APJC, EMEAR)' },
+        { n: '19', l: 'Executive & EA interviews' },
+        { n: '130', l: 'Survey respondents' },
+      ],
+      outcome: 'Research findings were prioritized by leadership for roadmap planning. Insights directly informed pilot projects for Webex bot notifications and digest emails, and helped secure executive buy-in for centralized platform development.',
+    },
+    'ai-compare': {
+      eyebrow: 'Cisco App Store · May 2024 · UserTesting',
+      title: 'Apps AI Compare Feature & Recommendation System Research',
+      subtitle: 'Evaluating desirability of AI-powered app comparison and personalized recommendations across 79 global employees',
+      methods: ['Unmoderated Usability Testing', '3 Usability Tasks', 'Post-task Questions', 'Discovery Interviews'],
+      background: 'As Cisco\'s App Store grew to 180+ tools, helping employees find and compare the right app became critical. I led end-to-end research to evaluate the desirability and usability of an AI comparison tool and personalized recommendation engine — ultimately influencing the decision to ship both features.',
+      questions: [
+        'How comfortable are employees with AI-enhanced experiences on the App Store?',
+        'How helpful is a comparison tool for app selection?',
+        'What dimensions do employees value in app comparisons?',
+        'How useful are customized recommendations, and what criteria matter most?',
+      ],
+      insights: [
+        '81% of users showed strong interest in an AI-driven app comparison tool',
+        '80% highly rated the usefulness of personalized AI-driven recommendations',
+        'Privacy and data transparency concerns surfaced as the primary hesitation',
+        'Users wanted to filter by compatibility, user reviews, and organizational usage patterns',
+      ],
+      impact: [
+        { n: '65%', l: 'Adoption rate in Q1 post-launch' },
+        { n: '+30%', l: 'Increase in App Store engagement' },
+        { n: '+15%', l: 'Increase in user satisfaction' },
+      ],
+      outcome: 'Research influenced the executive decision to green-light the AI comparison tool. The feature launched in mid-2024, and within Q1 achieved 65% adoption — with a 30% increase in time spent on the App Store and 20% more app access clicks.',
+    },
+    'profile-discovery': {
+      eyebrow: 'Cisco Intranet · September 2025 · Qualtrics',
+      title: 'Profile Service Discovery Survey',
+      subtitle: 'A large-scale survey of 4,000 intranet users exploring personalization comfort, feature preferences, and transparency expectations',
+      methods: ['Qualtrics Survey (n=446)', 'Descriptive Statistics', 'Cross-tab Analysis', 'Thematic Analysis of Open-ends'],
+      background: 'Cisco was exploring how personalized intranet experiences could improve employee productivity — but needed to understand comfort levels, desired controls, and potential concerns before building. I designed and executed a survey distributed to 4,000 frequent intranet users.',
+      questions: [
+        'What personalization features matter most to employees?',
+        'How comfortable are employees with profile-driven personalization?',
+        'What level of control and transparency do users expect?',
+        'What current pain points could personalization solve?',
+      ],
+      insights: [
+        '66% are comfortable with personalization; but 92% want control over it (68% want full control)',
+        'Top priorities: device health status, role-based content, and peer app suggestions',
+        '77% want "Why am I seeing this?" transparency for algorithmic recommendations',
+        'Key concerns: echo chambers, accessibility for neurodivergent users, and siloed experiences',
+      ],
+      impact: [
+        { n: '446', l: 'Responses (11.2% response rate)' },
+        { n: '77%', l: 'Demand algorithmic transparency' },
+        { n: '92%', l: 'Want some level of control' },
+      ],
+      outcome: 'Findings directly informed the Cisco intranet personalization roadmap, with a focus on opt-in controls, granular settings, transparency features, and accessibility considerations from the start — not as an afterthought.',
+    },
+    'proxy-usability': {
+      eyebrow: 'Cisco Approvals Tool · February 2025 · Maze',
+      title: 'Proxy Setting Usability Testing',
+      subtitle: 'Mixed-method usability study combining 8 moderated and 8 unmoderated sessions to evaluate a new delegation feature pre-launch',
+      methods: ['Moderated Usability Testing (n=8)', 'Unmoderated Testing via Maze (n=8)', 'Task Success Rate', 'Error Rate Analysis', 'Think-Aloud Protocol'],
+      background: 'Users previously had to navigate multiple disconnected systems to delegate approvals to a proxy — a frustrating, high-effort process. A new proxy settings feature was being developed to solve this. Before launch, I led end-to-end usability testing to identify issues and ensure the feature was intuitive.',
+      questions: [
+        'How easily can users locate and use the proxy settings?',
+        'Is the alternative "Sources" tab method discoverable?',
+        'What usability barriers exist in the current design?',
+        'How do users perceive the overall experience?',
+      ],
+      insights: [
+        '52% average error rate across tasks — primarily due to poor discoverability of the gear icon',
+        'Only 6 of 16 users attempted the "Sources" tab path; half failed to complete it',
+        'The label "Sources" was consistently confusing — users expected "Applications" or "Systems"',
+        'Users rated satisfaction 4/5 and ease of use 7/10 but requested significant simplification',
+      ],
+      impact: [
+        { n: '52%', l: 'Error rate uncovered pre-launch' },
+        { n: '16', l: 'Participants (AMER, APJC, EMEAR)' },
+        { n: '3', l: 'Scenario-based tasks evaluated' },
+      ],
+      outcome: 'All major findings were adopted by the product team. Design changes included a more prominent gear icon, renaming "Sources" to "Applications," adding a "Set Proxy Now" button to the dashboard, and introducing tooltip guidance — preventing a poor experience from shipping.',
+    },
+    'ai-assistant': {
+      eyebrow: 'Cisco Internal AI · August 2025 · Secondary Analysis',
+      title: 'Analyzing Approval Question Patterns in an AI Assistant',
+      subtitle: 'Thematic coding of 489 real user queries to surface approval workflow needs and shape AI integration priorities',
+      methods: ['Secondary Data Analysis', 'Thematic Coding', 'Category Taxonomy Development'],
+      background: 'Cisco\'s internal AI assistant was increasingly fielding approval-related questions — but no one had systematically studied what users were actually asking for. I conducted a thematic analysis of 489 real queries submitted between June 2024 and August 2025 to identify patterns and shape the MCP integration roadmap.',
+      questions: [
+        'What types of approval-related questions do users ask the AI?',
+        'Where do users struggle with visibility, delegation, or policy?',
+        'What quick-action opportunities can the AI enable?',
+      ],
+      insights: [
+        'Four main categories emerged: Status/Tracking, Delegation/Proxy, Process/Policy Clarification, and Quick Actions',
+        'Users expect the AI to take action — approve, reject, summarize — not just answer questions',
+        'Strong unmet need for a centralized dashboard with cross-system visibility',
+        'Delegation workflows are unclear and inconsistent, surfacing repeatedly in queries',
+      ],
+      impact: [
+        { n: '489', l: 'User queries analyzed' },
+        { n: '4', l: 'Core workflow categories identified' },
+        { n: '14', l: 'Months of data covered' },
+      ],
+      outcome: 'Findings directly influenced the MCP integration roadmap, prioritizing features like consolidated approval dashboards, inline policy explanations, audit-ready delegation flows, and embedded quick-action capabilities in the AI.',
+    },
+    'app-categories': {
+      eyebrow: 'Cisco App Store · June 2025 · Survey',
+      title: 'Apps Category Rationalization Research',
+      subtitle: 'Evaluating whether 230+ apps were organized in ways that actually helped employees find what they needed',
+      methods: ['Qualtrics Survey (n=86)', 'Quantitative Analysis', 'Open-end Thematic Analysis'],
+      background: 'As Cisco\'s App Store grew to 230+ apps, the existing category structure was aging. I led a 7-day evaluative survey across three global regions to understand whether the categories, Featured section, and overall navigation were working for employees.',
+      questions: [
+        'Are current app categories intuitive and helpful?',
+        'How do users perceive the "Featured" section?',
+        'Is there interest in a dedicated AI app category?',
+        'What improvements can enhance app discoverability?',
+      ],
+      insights: [
+        '64% found categories helpful, but users pointed to overlap between Collaboration and Productivity',
+        '55% found "Featured" useful — but wanted more personalization and freshness',
+        '79% expressed interest in an "AI" category with real-world use cases',
+        'Users requested multi-category app placement and improved search with filtering',
+      ],
+      impact: [
+        { n: '86', l: 'Global respondents' },
+        { n: '79%', l: 'Interest in a new AI category' },
+        { n: '3', l: 'Regions (AMER, APJC, EMEAR)' },
+      ],
+      outcome: 'Insights drove the rationalization of app categories, shaped the roadmap for personalized discovery, and directly informed the decision to launch an AI category with contextual use cases and filters.',
+    },
+    'engineering-it': {
+      eyebrow: 'Cisco Engineering IT · March 2024 · Mixed Methods',
+      title: 'Engineering IT UX Research',
+      subtitle: 'A mixed-method study that resulted in the decommission of a platform serving 20,000 engineers',
+      methods: ['Intercept Survey (n=792)', 'In-Depth Interviews (n=20)', 'Qualitative Thematic Analysis', 'Strategic Recommendation Framework'],
+      background: 'Engineering IT (EngIT) was a Confluence-based platform serving 20,000 engineers with ~5,300 monthly visits and 920 support cases per month. A global benchmark survey showed satisfaction had dropped from 61% to 55%. I led research to diagnose the experience and build a case for resource reallocation.',
+      questions: [
+        'What do users actually use EngIT for?',
+        'How do they navigate the site, and which areas are most used?',
+        'What are content owners\' challenges in managing the site?',
+        'What strategic options exist for the platform\'s future?',
+      ],
+      insights: [
+        'Most users came only for app access or IT support — not for knowledge content',
+        'The majority of content was perceived as outdated or low utility',
+        'Even high-frequency users limited their usage to only 2–3 areas of the site',
+        'Content owners reported difficulty keeping pages current and compliant',
+      ],
+      impact: [
+        { n: '792', l: 'Intercept survey responses' },
+        { n: '20', l: 'In-depth interviews' },
+        { n: '20k', l: 'Engineers impacted by migration' },
+      ],
+      outcome: 'Based on the research, leadership adopted Option A: full decommission. The EngIT site was sunset in September 2024. App access migrated to the App Store, support to Help Zone, and RunOn/Code Console integrations followed — a sweeping platform consolidation driven by research.',
+    },
+    'meta-ppq': {
+      eyebrow: 'Meta (Facebook) · October 2022 · Prototype Testing',
+      title: 'Pending Post Queue & Remind Me Feature Research',
+      subtitle: 'Concept prototype testing with 20 Group Admins to validate two moderation tools before development',
+      methods: ['Remote Prototype Testing', 'Zoom + Origami Sessions', 'Semi-structured Interviews', 'Concept Evaluation'],
+      background: 'Part of Facebook\'s strategic plan to strengthen platform reputation by improving Group Admin moderation tools. Two features were in early concept stage: the PPQ comment/react tool (to let admins engage with posts before approving) and the Remind Me feature (for tracking and delegating admin tasks).',
+      questions: [
+        'What do admins think about approve-and-respond from the PPQ surface?',
+        'Is the tool concept design usable and intuitive?',
+        'What are admins\' needs for a Remind Me feature?',
+        'Do admins see Remind Me as distinct from "Save Post" or an extension of it?',
+      ],
+      insights: [
+        '75% of Group Admins valued the PPQ interaction tool for sparking community engagement',
+        'Strong preference for commenting/reacting directly on PPQ — but only after post approval',
+        'Remind Me was highly valued for both personal moderation and team collaboration',
+        'Users wanted a "What\'s New" section to learn about new features as they launch',
+      ],
+      impact: [
+        { n: '70%', l: 'Active PPQ tool adoption in first 3 months' },
+        { n: '75%', l: 'Remind Me adoption among active admins' },
+        { n: '+50%', l: 'Faster post approval speed' },
+      ],
+      outcome: 'Both features launched with strong adoption. The PPQ tool drove 30% more group activity and 20% higher user retention within groups. 80% of admins reported higher satisfaction, and user trust ratings increased by 25% in groups actively using the tool.',
+    },
+  };
+
+  function openModal(id) {
+    const c = cases[id];
+    if (!c) return;
+
+    const impactBoxes = c.impact.map(i => `
+      <div class="impact-box">
+        <span class="n">${i.n}</span>
+        <div class="l">${i.l}</div>
+      </div>
+    `).join('');
+
+    const insightItems = c.insights.map(i => `<li>${i}</li>`).join('');
+    const questionItems = c.questions.map(q => `<li>${q}</li>`).join('');
+    const methodPills = c.methods.map(m => `<span class="modal-pill">${m}</span>`).join('');
+
+    document.getElementById('modal-body').innerHTML = `
+      <div class="modal-eyebrow">${c.eyebrow}</div>
+      <h2 class="modal-title">${c.title}</h2>
+      <p class="modal-subtitle">${c.subtitle}</p>
+
+      <div class="modal-section">
+        <h4>Methods</h4>
+        <div class="modal-pills">${methodPills}</div>
+      </div>
+
+      <div class="modal-section">
+        <h4>Background</h4>
+        <p>${c.background}</p>
+      </div>
+
+      <div class="modal-section">
+        <h4>Research Questions</h4>
+        <ul>${questionItems}</ul>
+      </div>
+
+      <div class="modal-section">
+        <h4>Key Insights</h4>
+        <ul>${insightItems}</ul>
+      </div>
+
+      <div class="modal-section">
+        <h4>Impact</h4>
+        <div class="modal-impact-grid">${impactBoxes}</div>
+      </div>
+
+      <div class="modal-section">
+        <h4>Outcome</h4>
+        <p>${c.outcome}</p>
+      </div>
+    `;
+
+    document.getElementById('modal-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeModalOnOverlay(e) {
+    if (e.target === document.getElementById('modal-overlay')) closeModal();
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // ========================
+  // SCROLL ANIMATIONS
+  // ========================
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+  
