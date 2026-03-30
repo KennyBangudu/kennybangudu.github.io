@@ -1145,6 +1145,110 @@
       <span class="case-arrow">Read case study →</span>
     </div>
 
+    <!-- Approvals MCP Survey — FEATURED NEW -->
+    <div class="case-card featured fade-up" onclick="openModal('approvals-mcp')" style="transition-delay: 0.05s;">
+      <div>
+        <div class="case-meta">
+          <span class="case-company">Cisco Approvals</span>
+          <span class="case-method">Survey · Qualtrics</span>
+          <span class="case-date">Mar 2026</span>
+        </div>
+        <h3 class="case-title">Approvals MCP User Interest Survey</h3>
+        <p class="case-desc">The most comprehensive approvals research to date — a 405-response study mapping AI agent appetite, trust boundaries, and preferred channels across 6,800+ global approvers. Directly informing the Approvals MCP product roadmap.</p>
+        <div class="case-stats">
+          <div class="case-stat">
+            <div class="case-stat-n">405</div>
+            <div class="case-stat-l">Completed responses</div>
+          </div>
+          <div class="case-stat">
+            <div class="case-stat-n">78%</div>
+            <div class="case-stat-l">Find AI agent appealing</div>
+          </div>
+          <div class="case-stat">
+            <div class="case-stat-n">96%</div>
+            <div class="case-stat-l">Survey completion rate</div>
+          </div>
+        </div>
+        <span class="case-arrow">Read case study →</span>
+      </div>
+      <div class="case-insights">
+        <p class="insight-label">Key Findings</p>
+        <ul class="insight-list">
+          <li>Webex/CIRCUIT ranked #1 preferred channel (score: 762 — 200+ pts ahead of next option)</li>
+          <li>AI earns highest trust as a "Knowledge Orchestrator": policy links (66%), request summaries (56%)</li>
+          <li>Autonomous approval comfort drops to 30% — users want AI to augment, not replace judgment</li>
+          <li>Context fragmentation, not volume, is the core pain — approvers lose time verifying intent outside the tool</li>
+          <li>Clear roadmap signal: lead with Decision Packets (Who, Why, Policy Match) in MCP v1</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Approvals Webex Bot Pulse Survey -->
+    <div class="case-card fade-up" onclick="openModal('webex-bot')" style="transition-delay: 0.1s;">
+      <div class="case-meta">
+        <span class="case-company">Cisco Approvals</span>
+        <span class="case-method">Survey · Qualtrics</span>
+        <span class="case-date">Mar 2026</span>
+      </div>
+      <h3 class="case-title">Approvals Webex Bot — Leadership Pulse Survey</h3>
+      <p class="case-desc">A 387-response pulse survey measuring satisfaction, usability, and adoption barriers for the Approvals Webex Bot among leaders and approvers — uncovering the path from occasional to daily use.</p>
+      <div class="case-stats">
+        <div class="case-stat">
+          <div class="case-stat-n">387</div>
+          <div class="case-stat-l">Respondents</div>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-n">86.6%</div>
+          <div class="case-stat-l">Satisfied or very satisfied</div>
+        </div>
+      </div>
+      <span class="case-arrow">Read case study →</span>
+    </div>
+
+    <!-- Bulk Approvals Usability Testing -->
+    <div class="case-card fade-up" onclick="openModal('bulk-approvals')" style="transition-delay: 0.15s;">
+      <div class="case-meta">
+        <span class="case-company">Cisco Approvals</span>
+        <span class="case-method">Moderated UT</span>
+        <span class="case-date">Dec 2025</span>
+      </div>
+      <h3 class="case-title">Bulk Approvals Feature — Usability Testing</h3>
+      <p class="case-desc">Moderated usability testing with 8 global approvers comparing two UI variants for a new bulk approvals feature — uncovering a critical workflow mismatch and reshaping the design before launch.</p>
+      <div class="case-stats">
+        <div class="case-stat">
+          <div class="case-stat-n">8</div>
+          <div class="case-stat-l">Moderated sessions</div>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-n">6.0/7</div>
+          <div class="case-stat-l">Intent-to-use rating</div>
+        </div>
+      </div>
+      <span class="case-arrow">Read case study →</span>
+    </div>
+
+    <!-- Directory Meta-Analysis -->
+    <div class="case-card fade-up" onclick="openModal('directory-meta')" style="transition-delay: 0.2s;">
+      <div class="case-meta">
+        <span class="case-company">Cisco Directory</span>
+        <span class="case-method">Secondary Research</span>
+        <span class="case-date">Oct 2025</span>
+      </div>
+      <h3 class="case-title">Meta-Analysis of Directory Feedback on Team Visibility</h3>
+      <p class="case-desc">A synthesis of six prior research studies — surveys, usability evaluations, Kano analyses, and interview data — to define team-context data use cases for the evolving Cisco Directory and Profile Service.</p>
+      <div class="case-stats">
+        <div class="case-stat">
+          <div class="case-stat-n">6</div>
+          <div class="case-stat-l">Prior studies synthesized</div>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-n">3</div>
+          <div class="case-stat-l">Critical insight themes</div>
+        </div>
+      </div>
+      <span class="case-arrow">Read case study →</span>
+    </div>
+
   </div>
 </section>
 
@@ -1472,8 +1576,6 @@
   };
 
   function openModal(id) {
-    const c = cases[id];
-    if (!c) return;
 
     const impactBoxes = c.impact.map(i => `
       <div class="impact-box">
@@ -1537,9 +1639,127 @@
 
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
+  // Extend cases with new entries
+  Object.assign(cases, {
+    'approvals-mcp': {
+      eyebrow: 'Cisco Approvals · March 2026 · Qualtrics Survey',
+      title: 'Approvals MCP User Interest Survey',
+      subtitle: '405 responses from 6,815 global approvers mapping AI agent appetite, trust boundaries, and preferred channels for a new MCP integration',
+      methods: ['Qualtrics Online Survey', 'Quantitative Analysis', 'Cross-tab Analysis', 'Qualitative Open-end Synthesis'],
+      background: 'As the Approvals product team explored building an MCP (Model Context Protocol) AI agent, a fundamental question needed answering: do users actually want AI-led interactions in approvals, and if so, where is the trust boundary? I designed and executed this study in March 2026 — the most recent and largest approvals study to date — to directly inform the MCP product roadmap with user-backed evidence.',
+      questions: [
+        'Do approvers want AI-led interactions for approvals, and through which channels?',
+        'What AI capabilities earn the most comfort and trust?',
+        'Where is the trust boundary for autonomous AI action?',
+        'What is the current workflow friction that AI could solve?',
+      ],
+      insights: [
+        'Workload is manageable (72% handle <10 approvals/week) — the pain is context fragmentation, not volume',
+        '78% find a conversational AI agent appealing; Webex/CIRCUIT ranked #1 preferred channel (score: 762 vs. 548 for the next option)',
+        'AI earns highest trust as a Knowledge Orchestrator: policy links (66%), request summaries (56%), outcome explanations (53%)',
+        'Autonomous approval comfort is just 30% "very comfortable" with 20% resistant — users want augmentation, not automation',
+        'Top MCP v1 feature signal: "Decision Packets" surfacing Who, Why, and Policy Match inline within CIRCUIT',
+      ],
+      impact: [
+        { n: '6,815', l: 'Employees invited' },
+        { n: '405', l: 'Completed responses (96% completion rate)' },
+        { n: '78%', l: 'Find AI agent appealing' },
+      ],
+      outcome: 'Findings directly informed the Approvals MCP product roadmap. The study established a clear build sequence: lead with Knowledge Orchestration capabilities in v1 (policy surfacing, request summaries, outcome explanations), hold autonomous delegation as an opt-in v2 feature once trust is established. The Webex/CIRCUIT channel preference validated the integration direction already in progress.',
+    },
+    'webex-bot': {
+      eyebrow: 'Cisco Approvals · March 2026 · Qualtrics Survey',
+      title: 'Approvals Webex Bot — Leadership Pulse Survey',
+      subtitle: 'Evaluating satisfaction, usability, and adoption friction for the Approvals Webex Bot across 387 leaders and approvers',
+      methods: ['Qualtrics Online Survey (n=387)', 'Usage Segmentation Analysis', 'Qualitative Thematic Analysis', 'Experience Statement Ratings'],
+      background: 'The Approvals Webex Bot had been live for several months, but the product team lacked a systematic view of how leaders and approvers perceived it — what was working, where friction existed, and what would drive deeper adoption. I designed and executed a pulse survey targeting two distinct audiences: confirmed bot users and non-user people leaders, capturing both depth-of-experience and broader awareness signals.',
+      questions: [
+        'How satisfied are users with the Approvals Webex Bot overall?',
+        'What is the bot\'s primary perceived value, and where does it fall short?',
+        'What friction points prevent occasional users from becoming daily adopters?',
+        'What feature improvements would drive adoption and satisfaction?',
+      ],
+      insights: [
+        '86.6% of respondents are satisfied or very satisfied with the Approvals Webex Bot',
+        'Over 90% agree the bot is intuitive and provides timely notifications',
+        'The bot\'s core value — fast approvals without switching portals — is clearly resonating',
+        'Key friction: redundant email notifications, incomplete approval coverage, limited contextual detail, and occasional reliability issues',
+        'Daily/weekly users rate satisfaction higher (4.46–4.48) than monthly users (4.40), confirming that familiarity drives satisfaction',
+      ],
+      impact: [
+        { n: '387', l: 'Total respondents' },
+        { n: '86.6%', l: 'Satisfied or very satisfied' },
+        { n: '90%+', l: 'Find bot intuitive & timely' },
+      ],
+      outcome: 'Findings surfaced a clear adoption accelerator: closing the "email gap" (reducing duplicate notifications), expanding approval type coverage, and adding richer contextual detail within the bot. These were adopted as priority items in the Approvals product backlog, providing a direct line from research to roadmap decisions.',
+    },
+    'bulk-approvals': {
+      eyebrow: 'Cisco Approvals · December 2025 · Moderated Usability Testing',
+      title: 'Bulk Approvals Feature — Usability Testing',
+      subtitle: 'Comparative moderated testing of two UI variants for a new bulk approvals feature with 8 global approvers',
+      methods: ['Moderated Usability Testing (n=8)', 'Comparative Task Analysis', 'Think-Aloud Protocol', 'Post-task Rating Scales'],
+      background: 'The Approvals product team was preparing to ship a Bulk Approvals feature — allowing managers to approve or deny multiple requests at once. Two design variants existed with different button placements, and key usability questions were unresolved. I led end-to-end moderated testing with 8 participants across AMER, APJC, and EMEAR to identify the most usable design and surface issues before launch.',
+      questions: [
+        'Which UI design best enables fast, confident, and error-free bulk approvals?',
+        'Does the filter-then-act mental model match the current design flow?',
+        'How visible is the filter notification and how does it affect user trust?',
+        'What are users\' preferences for button placement (top vs. bottom)?',
+      ],
+      insights: [
+        'High intent to use despite usability issues — average 6.0/7 intent-to-use rating',
+        'Critical workflow mismatch: users expect to filter first then act, but the design requires clicking "Bulk Action" before filtering',
+        'Most users missed the filter notification entirely, causing confusion and eroding trust in the workflow',
+        'Button placement preference split: 4 preferred top, 2 preferred bottom, 2 were flexible — no single placement satisfies all users',
+        'Pagination across multiple pages caused significant confusion and disrupted selection continuity',
+      ],
+      impact: [
+        { n: '8', l: 'Moderated sessions (VP to IC level)' },
+        { n: '3', l: 'Global regions (AMER, APJC, EMEAR)' },
+        { n: '6.0/7', l: 'Average intent-to-use rating' },
+      ],
+      outcome: 'All major findings were incorporated into design revisions before launch. Changes included reordering the filter-then-act flow, making the filter notification more prominent, improving post-action confirmation messaging, and addressing pagination for large approval lists. The study prevented a workflow-mismatch failure from shipping to production.',
+    },
+    'directory-meta': {
+      eyebrow: 'Cisco Directory & Profile Service · October 2025 · Secondary Research',
+      title: 'Meta-Analysis of Directory Feedback on Team Visibility',
+      subtitle: 'Synthesizing six prior research studies to define team-context data use cases for the evolving Cisco Directory and Profile Service',
+      methods: ['Secondary Research Synthesis', 'Thematic Analysis (AI-assisted via CIRCUIT)', 'Cross-study Pattern Analysis', 'Use Case Definition'],
+      background: 'The Cisco Profile Service team needed a foundation for evolving the Directory experience — specifically understanding how, when, and why team-context data (dynamic teams, collaborators, project partners) should appear within employee profiles. Rather than start from scratch, I synthesized six prior research studies spanning surveys, usability evaluations, Kano analyses, design preference tests, interview summaries, and incident reports.',
+      questions: [
+        'How, when, and why should team-context data appear within the Directory experience?',
+        'What are the critical information gaps users experience in the current Directory?',
+        'What do users need from search and profile management that they aren\'t getting today?',
+        'What team-context features would most delight vs. satisfy vs. frustrate users?',
+      ],
+      insights: [
+        'Titles and reporting chains are insufficient — users cannot infer responsibilities, collaborators, or project ownership from the current Directory',
+        'Strong unmet demand for real-time team membership, current initiatives, and association type (Lead/IC/SME) on profile pages',
+        'Users want a single search with grouped typeahead, robust filters (org, title, timezone, expertise), and expandable rows revealing team context',
+        'High demand for a dedicated "Org Details" page showing mission, scope, size, initiatives, and roster — currently non-existent',
+        'Dynamic relationship views (including dotted-line reporting) were consistently cited as missing across multiple studies',
+      ],
+      impact: [
+        { n: '6', l: 'Prior studies synthesized' },
+        { n: '3', l: 'Core insight themes identified' },
+        { n: '4', l: 'Use case categories defined for Profile Service' },
+      ],
+      outcome: 'The synthesis produced actionable use case recommendations for the Profile Service roadmap — defining where and how to surface team-context data within the Directory. Findings provided the historical grounding needed to align stakeholders around a shared vision for the evolved Directory experience, without duplicating research already conducted by prior team members.',
+    },
+  });
+
   // ========================
   // SCROLL ANIMATIONS
   // ========================
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
-  
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
