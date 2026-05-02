@@ -154,7 +154,7 @@
     .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-    /* RESPONSIVE */
+    /* R[enterprise service platform]ONSIVE */
     @media (max-width: 900px) {
       #hero { grid-template-columns: 1fr; min-height: auto; }
       .hero-right { min-height: 380px; }
@@ -296,7 +296,7 @@
       <div class="case-insights">
         <p class="insight-label">Key Findings</p>
         <ul class="insight-list">
-          <li>Webex/CIRCUIT ranked #1 preferred channel (score: 762 &mdash; 200+ pts ahead of next option)</li>
+          <li>Webex/[internal AI assistant] ranked #1 preferred channel (score: 762 &mdash; 200+ pts ahead of next option)</li>
           <li>AI earns highest trust as a "Knowledge Orchestrator": policy links (66%), request summaries (56%)</li>
           <li>Autonomous approval comfort drops to 30% &mdash; users want AI to augment, not replace judgment</li>
           <li>Context fragmentation, not volume, is the core pain</li>
@@ -417,7 +417,7 @@
 
     <!-- Engineering IT -->
     <div class="case-card fade-up" onclick="openModal('engineering-it')" style="transition-delay:0.15s;">
-      <div class="case-meta"><span class="case-company">Cisco EngIT</span><span class="case-method">Intercept + Interviews</span><span class="case-date">Mar 2024</span></div>
+      <div class="case-meta"><span class="case-company">Cisco [Engineering IT portal]</span><span class="case-method">Intercept + Interviews</span><span class="case-date">Mar 2024</span></div>
       <h3 class="case-title">Engineering IT UX Research</h3>
       <p class="case-desc">Mixed-method study of a Confluence-based platform serving 20k engineers &mdash; 792 intercept survey responses and 20 interviews led to the platform's full decommission and strategic migration.</p>
       <div class="case-stats">
@@ -437,6 +437,58 @@
         <div class="case-stat"><div class="case-stat-n">50%</div><div class="case-stat-l">Faster post approvals</div></div>
       </div>
       <span class="case-arrow">Read case study &rarr;</span>
+    </div>
+
+
+    <!-- App Store AI Agent Survey -->
+    <div class="case-card fade-up" onclick="openModal('appstore-ai-agent')" style="transition-delay: 0.05s;">
+      <div class="case-meta">
+        <span class="case-company">Cisco App Store</span>
+        <span class="case-method">Survey · Qualtrics</span>
+        <span class="case-date">Apr 2026</span>
+      </div>
+      <h3 class="case-title">App Store AI Agent Survey</h3>
+      <p class="case-desc">A 233-response study defining the scope, trust boundaries, and interaction model for an AI agent on the Cisco App Store — establishing that users want AI as a navigator, not an autonomous actor.</p>
+      <div class="case-stats">
+        <div class="case-stat"><div class="case-stat-n">233</div><div class="case-stat-l">Completed responses</div></div>
+        <div class="case-stat"><div class="case-stat-n">75%</div><div class="case-stat-l">Comfortable with AI for info retrieval</div></div>
+        <div class="case-stat"><div class="case-stat-n">46%</div><div class="case-stat-l">Top demand: app recommendations</div></div>
+      </div>
+      <span class="case-arrow">Read case study →</span>
+    </div>
+
+    <!-- Find in My Stuff -->
+    <div class="case-card fade-up" onclick="openModal('findmy')" style="transition-delay: 0.1s;">
+      <div class="case-meta">
+        <span class="case-company">Cisco Productivity</span>
+        <span class="case-method">Survey + Journey Mapping</span>
+        <span class="case-date">Mar–Apr 2026</span>
+      </div>
+      <h3 class="case-title">Find in My Stuff — AI-Enabled Search Experience</h3>
+      <p class="case-desc">Collaborative research and journey mapping project defining the as-is and to-be experience for enterprise information retrieval — surfacing that employees lose nearly two weeks a year searching for content they have already seen.</p>
+      <div class="case-stats">
+        <div class="case-stat"><div class="case-stat-n">323</div><div class="case-stat-l">Survey respondents</div></div>
+        <div class="case-stat"><div class="case-stat-n">92 min</div><div class="case-stat-l">Lost per employee per week</div></div>
+        <div class="case-stat"><div class="case-stat-n">27%</div><div class="case-stat-l">Searches end in failure</div></div>
+      </div>
+      <span class="case-arrow">Read case study →</span>
+    </div>
+
+    <!-- Approvals Q3 Metrics -->
+    <div class="case-card fade-up" onclick="openModal('approvals-q3')" style="transition-delay: 0.15s;">
+      <div class="case-meta">
+        <span class="case-company">Cisco Approvals</span>
+        <span class="case-method">Mixed Methods · Metrics</span>
+        <span class="case-date">Apr 2026</span>
+      </div>
+      <h3 class="case-title">Approvals Tool Health Report — FY26 Q3</h3>
+      <p class="case-desc">A quarterly mixed-methods analysis combining click metrics, task health snapshots, and digital intercept survey data to track adoption trends, identify UX friction, and measure new channel performance across the Approvals platform.</p>
+      <div class="case-stats">
+        <div class="case-stat"><div class="case-stat-n">83→86</div><div class="case-stat-l">Overall health score Q2→Q3</div></div>
+        <div class="case-stat"><div class="case-stat-n">6,731</div><div class="case-stat-l">Webex Bot actions (first month)</div></div>
+        <div class="case-stat"><div class="case-stat-n">98.8%</div><div class="case-stat-l">Bot approval rate</div></div>
+      </div>
+      <span class="case-arrow">Read case study →</span>
     </div>
 
   </div>
@@ -548,9 +600,9 @@ const cases = {
     methods: ['Qualtrics Online Survey', 'Quantitative Analysis', 'Cross-tab Analysis', 'Qualitative Open-end Synthesis'],
     background: 'As the Approvals product team explored building an MCP AI agent, a fundamental question needed answering: do users actually want AI-led interactions in approvals, and if so, where is the trust boundary? I designed and executed this study in March 2026 — the most recent and largest approvals study to date — to directly inform the MCP product roadmap with user-backed evidence.',
     questions: ['Do approvers want AI-led interactions for approvals, and through which channels?', 'What AI capabilities earn the most comfort and trust?', 'Where is the trust boundary for autonomous AI action?', 'What is the current workflow friction that AI could solve?'],
-    insights: ['Workload is manageable (72% handle fewer than 10 approvals/week) — the pain is context fragmentation, not volume', '78% find a conversational AI agent appealing; Webex/CIRCUIT ranked #1 preferred channel (score: 762 vs. 548 for next option)', 'AI earns highest trust as a Knowledge Orchestrator: policy links (66%), request summaries (56%), outcome explanations (53%)', 'Autonomous approval comfort is just 30% very comfortable with 20% resistant — users want augmentation, not automation', 'Top MCP v1 signal: Decision Packets surfacing Who, Why, and Policy Match inline within CIRCUIT'],
+    insights: ['Workload is manageable (72% handle fewer than 10 approvals/week) — the pain is context fragmentation, not volume', '78% find a conversational AI agent appealing; Webex/[internal AI assistant] ranked #1 preferred channel (score: 762 vs. 548 for next option)', 'AI earns highest trust as a Knowledge Orchestrator: policy links (66%), request summaries (56%), outcome explanations (53%)', 'Autonomous approval comfort is just 30% very comfortable with 20% resistant — users want augmentation, not automation', 'Top MCP v1 signal: Decision Packets surfacing Who, Why, and Policy Match inline within [internal AI assistant]'],
     impact: [{ n: '6,815', l: 'Employees invited' }, { n: '405', l: 'Completed responses (96% completion rate)' }, { n: '78%', l: 'Find AI agent appealing' }],
-    outcome: 'Findings directly informed the Approvals MCP product roadmap. The study established a clear build sequence: lead with Knowledge Orchestration capabilities in v1, hold autonomous delegation as an opt-in v2 feature once trust is established. The Webex/CIRCUIT channel preference validated the integration direction already in progress.',
+    outcome: 'Findings directly informed the Approvals MCP product roadmap. The study established a clear build sequence: lead with Knowledge Orchestration capabilities in v1, hold autonomous delegation as an opt-in v2 feature once trust is established. The Webex/[internal AI assistant] channel preference validated the integration direction already in progress.',
   },
   'webex-bot': {
     eyebrow: 'Cisco Approvals · March 2026 · Qualtrics Survey',
@@ -568,9 +620,9 @@ const cases = {
     title: 'Approvals Experience Discovery Study',
     subtitle: 'Generative research across 19 interviews and a 130-person survey to map the end-to-end approvals landscape',
     methods: ['In-depth Interviews (n=19)', 'Survey (n=130)', 'Thematic Analysis', 'Cross-tab Analysis'],
-    background: 'Executives and people leaders at Cisco navigate 5+ disconnected approval systems — Concur, Ariba, Workday, SmartBuy, and others — daily. This fragmentation creates cognitive overhead, delays, and a frustrating experience for busy leaders. I led a 45-day generative research initiative to map the full experience and surface opportunities for consolidation.',
+    background: 'Executives and people leaders at Cisco navigate 5+ disconnected approval systems — multiple enterprise systems, [internal procurement tool], and others — daily. This fragmentation creates cognitive overhead, delays, and a frustrating experience for busy leaders. I led a 45-day generative research initiative to map the full experience and surface opportunities for consolidation.',
     questions: ['What are users current experiences in the approvals process at Cisco?', 'How do users manage delegation and proxy approvals?', 'What are preferences for notifications and mobile access?', 'What opportunities exist for streamlining the experience?'],
-    insights: ['Tool fragmentation is a major barrier — users regularly navigate 5+ systems with no unified view', 'Delegation is inconsistent and policy-constrained, creating friction for EAs and executives', 'Email overload is widespread; users want digest summaries and Webex bot options', 'Strong demand for a centralized platform (approvals.cisco.com) emerged across all user groups', 'Mobile access is essential, especially for executives approving on the go'],
+    insights: ['Tool fragmentation is a major barrier — users regularly navigate 5+ systems with no unified view', 'Delegation is inconsistent and policy-constrained, creating friction for EAs and executives', 'Email overload is widespread; users want digest summaries and Webex bot options', 'Strong demand for a centralized platform ([internal approvals portal]) emerged across all user groups', 'Mobile access is essential, especially for executives approving on the go'],
     impact: [{ n: '3', l: 'Regions covered (AMER, APJC, EMEAR)' }, { n: '19', l: 'Executive and EA interviews' }, { n: '130', l: 'Survey respondents' }],
     outcome: 'Research findings were prioritized by leadership for roadmap planning. Insights directly informed pilot projects for Webex bot notifications and digest emails, and helped secure executive buy-in for centralized platform development.',
   },
@@ -611,7 +663,7 @@ const cases = {
     eyebrow: 'Cisco Directory & Profile Service · October 2025 · Secondary Research',
     title: 'Meta-Analysis of Directory Feedback on Team Visibility',
     subtitle: 'Synthesizing six prior research studies to define team-context data use cases for the evolving Cisco Directory and Profile Service',
-    methods: ['Secondary Research Synthesis', 'Thematic Analysis (AI-assisted via CIRCUIT)', 'Cross-study Pattern Analysis', 'Use Case Definition'],
+    methods: ['Secondary Research Synthesis', 'Thematic Analysis (AI-assisted via [internal AI assistant])', 'Cross-study Pattern Analysis', 'Use Case Definition'],
     background: 'The Cisco Profile Service team needed a foundation for evolving the Directory experience — specifically understanding how, when, and why team-context data should appear within employee profiles. Rather than start from scratch, I synthesized six prior research studies spanning surveys, usability evaluations, Kano analyses, design preference tests, interview summaries, and incident reports.',
     questions: ['How, when, and why should team-context data appear within the Directory experience?', 'What are the critical information gaps users experience in the current Directory?', 'What do users need from search and profile management that they are not getting today?', 'What team-context features would most delight vs. satisfy vs. frustrate users?'],
     insights: ['Titles and reporting chains are insufficient — users cannot infer responsibilities, collaborators, or project ownership from the current Directory', 'Strong unmet demand for real-time team membership, current initiatives, and association type (Lead/IC/SME) on profile pages', 'Users want a single search with grouped typeahead, robust filters (org, title, timezone, expertise), and expandable rows revealing team context', 'High demand for a dedicated Org Details page showing mission, scope, size, initiatives, and roster — currently non-existent', 'Dynamic relationship views (including dotted-line reporting) were consistently cited as missing across multiple studies'],
@@ -656,11 +708,11 @@ const cases = {
     title: 'Engineering IT UX Research',
     subtitle: 'A mixed-method study that resulted in the decommission of a platform serving 20,000 engineers',
     methods: ['Intercept Survey (n=792)', 'In-Depth Interviews (n=20)', 'Qualitative Thematic Analysis', 'Strategic Recommendation Framework'],
-    background: 'Engineering IT (EngIT) was a Confluence-based platform serving 20,000 engineers with ~5,300 monthly visits and 920 support cases per month. A global benchmark survey showed satisfaction had dropped from 61% to 55%. I led research to diagnose the experience and build a case for resource reallocation.',
-    questions: ['What do users actually use EngIT for?', 'How do they navigate the site, and which areas are most used?', 'What are content owners challenges in managing the site?', 'What strategic options exist for the platform future?'],
+    background: 'Engineering IT ([Engineering IT portal]) was a Confluence-based platform serving 20,000 engineers with ~5,300 monthly visits and 920 support cases per month. A global benchmark survey showed satisfaction had dropped from 61% to 55%. I led research to diagnose the experience and build a case for resource reallocation.',
+    questions: ['What do users actually use [Engineering IT portal] for?', 'How do they navigate the site, and which areas are most used?', 'What are content owners challenges in managing the site?', 'What strategic options exist for the platform future?'],
     insights: ['Most users came only for app access or IT support — not for knowledge content', 'The majority of content was perceived as outdated or low utility', 'Even high-frequency users limited their usage to only 2–3 areas of the site', 'Content owners reported difficulty keeping pages current and compliant'],
     impact: [{ n: '792', l: 'Intercept survey responses' }, { n: '20', l: 'In-depth interviews' }, { n: '20k', l: 'Engineers impacted by migration' }],
-    outcome: 'Based on the research, leadership adopted Option A: full decommission. The EngIT site was sunset in September 2024. App access migrated to the App Store, support to Help Zone, and RunOn/Code Console integrations followed — a sweeping platform consolidation driven by research.',
+    outcome: 'Based on the research, leadership adopted Option A: full decommission. The [Engineering IT portal] site was sunset in September 2024. App access migrated to the App Store, support to [internal support portal], and [internal developer platform]/[internal developer tool] integrations followed — a sweeping platform consolidation driven by research.',
   },
   'meta-ppq': {
     eyebrow: 'Meta (Facebook) · October 2022 · Prototype Testing',
