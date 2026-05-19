@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kennitivity's Consulting — Strategic UX Research</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================
+       TOKENS
+    ============================ */
+    :root {
+      --navy:      #0D1B2A;
+      --navy-md:   #162438;
+      --navy-lt:   #1E3250;
+      --gold:      #C8963E;
+      --gold-lt:   #E2B96A;
+      --gold-pale: #F5E8CC;
+      --cream:     #FAF8F4;
+      --off:       #F2EFE9;
+      --ink:       #1A1208;
+      --ink-md:    #4A3F2F;
+      --ink-lt:    #8A7D6A;
+      --border:    #E0D9CE;
+      --white:     #FFFFFF;
+      --r:         8px;
+      --r-lg:      16px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Instrument Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ============================
+       NAV
+    ============================ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(13,27,42,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,150,62,0.2);
+      padding: 0 6%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+
+    .nav-brand {
+      display: flex; flex-direction: column; gap: 0;
+      text-decoration: none;
+    }
+
+    .nav-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.01em;
+      line-height: 1.1;
+    }
+
+    .nav-brand-tag {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex; gap: 2.5rem; list-style: none; align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--gold) !important;
+      color: var(--navy) !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 4px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--gold-lt) !important; color: var(--navy) !important; }
+
+    /* ============================
+       HERO
+    ============================ */
+    #hero {
+      min-height: 100vh;
+      background: var(--navy);
+      padding-top: 68px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-pattern {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(200,150,62,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,150,62,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-bg-glow {
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(200,150,62,0.08) 0%, transparent 65%);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .hero-left {
+      padding: 7% 6% 7% 8%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative; z-index: 1;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-kicker::before {
+      content: '';
+      width: 28px; height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 4.5vw, 4rem);
+      line-height: 1.12;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.65);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 0.85rem 2rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s;
+      border: none; cursor: pointer;
+    }
+
+    .btn-gold:hover { background: var(--gold-lt); transform: translateY(-1px); }
+
+    .btn-ghost {
+      background: transparent;
+      color: rgba(255,255,255,0.8);
+      padding: 0.85rem 2rem;
+      border-radius: 4px;
+      border: 1px solid rgba(255,255,255,0.2);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6%;
+      position: relative; z-index: 1;
+    }
+
+    .hero-credentials {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(200,150,62,0.15);
+      border: 1px solid rgba(200,150,62,0.2);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      width: 100%;
+      max-width: 440px;
+    }
+
+    .cred-box {
+      background: rgba(255,255,255,0.04);
+      padding: 2rem 1.5rem;
+      transition: background 0.2s;
+    }
+
+    .cred-box:hover { background: rgba(200,150,62,0.06); }
+
+    .cred-n {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .cred-l {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.4;
+      font-weight: 400;
+    }
+
+    .hero-logos {
+      margin-top: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .logo-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      white-space: nowrap;
+    }
+
+    .logo-pills {
+      display: flex; gap: 0.6rem; flex-wrap: wrap;
+    }
+
+    .logo-pill {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 0.3rem 0.75rem;
+      border-radius: 3px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ============================
+       SECTION COMMONS
+    ============================ */
+    section { padding: 6rem 8%; }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-kicker::before {
+      content: '';
+      width: 20px; height: 1px;
+      background: var(--gold);
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 3vw, 2.8rem);
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      line-height: 1.15;
+      font-weight: 700;
+    }
+
+    .section-title.light { color: var(--white); }
+
+    .section-sub {
+      color: var(--ink-md);
+      max-width: 580px;
+      font-size: 1.02rem;
+      margin-bottom: 3.5rem;
+      font-weight: 300;
+    }
+
+    .section-sub.light { color: rgba(255,255,255,0.6); }
+
+    /* ============================
+       SERVICES
+    ============================ */
+    #services { background: var(--cream); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+
+    .service-card {
+      background: var(--white);
+      padding: 2.5rem 2rem;
+      transition: background 0.25s;
+      position: relative;
+    }
+
+    .service-card:hover { background: var(--off); }
+
+    .service-card.featured {
+      background: var(--navy);
+      grid-column: span 1;
+    }
+
+    .service-card.featured:hover { background: var(--navy-md); }
+
+    .service-icon {
+      width: 44px; height: 44px;
+      background: var(--gold-pale);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+    }
+
+    .service-card.featured .service-icon {
+      background: rgba(200,150,62,0.15);
+    }
+
+    .service-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+    }
+
+    .service-card.featured .service-name { color: var(--white); }
+
+    .service-desc {
+      font-size: 0.88rem;
+      color: var(--ink-md);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .service-card.featured .service-desc { color: rgba(255,255,255,0.6); }
+
+    .service-deliverables {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .service-deliverables li {
+      font-size: 0.8rem;
+      color: var(--ink-lt);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .service-deliverables li::before {
+      content: '→';
+      color: var(--gold);
+      flex-shrink: 0;
+      font-size: 0.75rem;
+      margin-top: 0.1rem;
+    }
+
+    .service-card.featured .service-deliverables li { color: rgba(255,255,255,0.5); }
+
+    /* ============================
+       HOW I WORK
+    ============================ */
+    #how { background: var(--navy); }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 36px; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200,150,62,0.3) 20%, rgba(200,150,62,0.3) 80%, transparent);
+      z-index: 0;
+    }
+
+    .process-step {
+      padding: 0 1.5rem;
+      position: relative; z-index: 1;
+      text-align: left;
+    }
+
+    .step-number {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      border: 1px solid rgba(200,150,62,0.3);
+      background: var(--navy-lt);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .step-n {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .step-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+
+    .step-desc {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 4rem;
+    }
+
+    .principle {
+      border-left: 2px solid rgba(200,150,62,0.3);
+      padding-left: 1.25rem;
+    }
+
+    .principle-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.4rem;
+    }
+
+    .principle-desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    /* ============================
+       ENGAGEMENT MODELS
+    ============================ */
+    #engagement { background: var(--off); }
+
+    .engagement-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .engagement-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+
+    .engagement-card:hover {
+      box-shadow: 0 12px 40px rgba(13,27,42,0.08);
+      transform: translateY(-3px);
+    }
+
+    .engagement-card.recommended {
+      border-color: var(--gold);
+      background: var(--navy);
+    }
+
+    .recommended-badge {
+      position: absolute;
+      top: -12px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .engagement-type {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .engagement-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+    }
+
+    .engagement-card.recommended .engagement-name { color: var(--white); }
+
+    .engagement-price {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .engagement-price-note {
+      font-size: 0.75rem;
+      color: var(--ink-lt);
+      margin-bottom: 1.5rem;
+    }
+
+    .engagement-card.recommended .engagement-price-note { color: rgba(255,255,255,0.4); }
+
+    .engagement-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 1.5rem;
+    }
+
+    .engagement-card.recommended .engagement-divider { background: rgba(255,255,255,0.1); }
+
+    .engagement-desc {
+      font-size: 0.87rem;
+      color: var(--ink-md);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+
+    .engagement-card.recommended .engagement-desc { color: rgba(255,255,255,0.6); }
+
+    .engagement-includes {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      flex: 1;
+    }
+
+    .engagement-includes li {
+      font-size: 0.83rem;
+      color: var(--ink-md);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      line-height: 1.5;
+    }
+
+    .engagement-card.recommended .engagement-includes li { color: rgba(255,255,255,0.6); }
+
+    .check {
+      color: var(--gold);
+      font-size: 0.8rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .engagement-cta {
+      margin-top: 2rem;
+      display: block;
+      text-align: center;
+      padding: 0.8rem;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      color: var(--ink-md);
+      transition: all 0.2s;
+    }
+
+    .engagement-cta:hover { border-color: var(--gold); color: var(--gold); }
+
+    .engagement-card.recommended .engagement-cta {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--navy);
+    }
+
+    .engagement-card.recommended .engagement-cta:hover { background: var(--gold-lt); }
+
+    /* ============================
+       PAST IMPACT
+    ============================ */
+    #impact { background: var(--cream); }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .impact-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 2rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .impact-card:hover { box-shadow: 0 8px 30px rgba(13,27,42,0.07); }
+
+    .impact-card.wide {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      background: var(--navy);
+      border-color: transparent;
+    }
+
+    .impact-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      gap: 1rem;
+    }
+
+    .impact-industry {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-lt);
+      background: var(--off);
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.6rem;
+      border-radius: 3px;
+    }
+
+    .impact-card.wide .impact-industry {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.45);
+    }
+
+    .impact-scope {
+      font-size: 0.68rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .impact-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+
+    .impact-card.wide .impact-title { color: var(--white); }
+
+    .impact-context {
+      font-size: 0.85rem;
+      color: var(--ink-md);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+      font-weight: 300;
+    }
+
+    .impact-card.wide .impact-context { color: rgba(255,255,255,0.55); }
+
+    .impact-metrics {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .impact-card.wide .impact-metrics { border-color: rgba(255,255,255,0.1); }
+
+    .impact-metric { text-align: left; }
+
+    .impact-metric-n {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--gold);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .impact-metric-l {
+      font-size: 0.72rem;
+      color: var(--ink-lt);
+      margin-top: 0.15rem;
+      line-height: 1.3;
+    }
+
+    .impact-card.wide .impact-metric-l { color: rgba(255,255,255,0.35); }
+
+    .impact-method-pills {
+      display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem;
+    }
+
+    .method-pill {
+      font-size: 0.7rem;
+      color: var(--ink-lt);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.55rem;
+      border-radius: 3px;
+    }
+
+    .impact-card.wide .method-pill {
+      border-color: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* ============================
+       TESTIMONIAL BAR
+    ============================ */
+    #testimonials {
+      background: var(--navy-lt);
+      padding: 4rem 8%;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .testimonial {
+      border-left: 2px solid rgba(200,150,62,0.35);
+      padding-left: 1.5rem;
+    }
+
+    .testimonial-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-attr {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ============================
+       CONTACT
+    ============================ */
+    #contact {
+      background: var(--navy);
+      padding: 6rem 8%;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .contact-left .section-title { color: var(--white); margin-bottom: 1rem; }
+
+    .contact-blurb {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.55);
+      font-weight: 300;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-row:hover { color: var(--gold); }
+
+    .contact-row-icon {
+      width: 36px; height: 36px;
+      background: rgba(200,150,62,0.1);
+      border: 1px solid rgba(200,150,62,0.2);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .contact-form-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(200,150,62,0.18);
+      border-radius: var(--r-lg);
+      padding: 2.5rem;
+    }
+
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+
+    .form-sub {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 1.75rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px;
+      padding: 0.7rem 0.9rem;
+      font-size: 0.88rem;
+      color: var(--white);
+      font-family: 'Instrument Sans', sans-serif;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .form-group select option { background: var(--navy); color: var(--white); }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 90px; }
+
+    .form-submit {
+      width: 100%;
+      margin-top: 0.5rem;
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      padding: 0.9rem;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-family: 'Instrument Sans', sans-serif;
+    }
+
+    .form-submit:hover { background: var(--gold-lt); }
+
+    /* ============================
+       FOOTER
+    ============================ */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.3);
+      padding: 1.75rem 8%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+    }
+
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.9rem;
+    }
+
+    .footer-links {
+      display: flex; gap: 1.5rem;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      font-size: 0.75rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ============================
+       ANIMATIONS
+    ============================ */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ============================
+       RESPONSIVE
+    ============================ */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .process-steps::before { display: none; }
+      .principles { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      #hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .engagement-grid { grid-template-columns: 1fr; }
+      .impact-grid { grid-template-columns: 1fr; }
+      .impact-card.wide { grid-column: span 1; grid-template-columns: 1fr; }
+      .testimonial-grid { grid-template-columns: 1fr; }
+      #contact { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .principles { grid-template-columns: 1fr; }
+      nav .nav-links { display: none; }
+      section { padding: 4rem 5%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#hero">
+    <span class="nav-brand-name">Kennitivity's</span>
+    <span class="nav-brand-tag">UX Research Consulting</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">How I Work</a></li>
+    <li><a href="#engagement">Engagement</a></li>
+    <li><a href="#impact">Past Impact</a></li>
+    <li><a class="nav-cta" href="#contact">Let's Talk</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-bg-glow"></div>
+  <div class="hero-left">
+    <span class="hero-kicker">Strategic UX Research Consulting</span>
+    <h1 class="hero-headline">Research that moves<br /><em>products forward</em></h1>
+    <p class="hero-sub">Senior-level UX research strategy, execution, and AI-product expertise — delivered as a trusted consulting partner to enterprise and B2B teams who need insight-led decisions, not just deliverables.</p>
+    <div class="hero-actions">
+      <a class="btn-gold" href="#contact">Start a Conversation</a>
+      <a class="btn-ghost" href="#services">View Services</a>
+    </div>
+    <div class="hero-logos">
+      <span class="logo-label">Past clients include</span>
+      <div class="logo-pills">
+        <span class="logo-pill">Enterprise Tech</span>
+        <span class="logo-pill">Social Platforms</span>
+        <span class="logo-pill">Federal / Gov</span>
+        <span class="logo-pill">B2B SaaS</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div style="width: 100%; max-width: 440px;">
+      <div class="hero-credentials">
+        <div class="cred-box">
+          <div class="cred-n">7+</div>
+          <div class="cred-l">Years UX Research Experience</div>
+        </div>
+        <div class="cred-box">
+          <div class="cred-n">85k+</div>
+          <div class="cred-l">Enterprise Users Impacted</div>
+        </div>
+        <div class="cred-box">
+          <div class="cred-n">16+</div>
+          <div class="cred-l">Research Studies Led</div>
+        </div>
+        <div class="cred-box">
+          <div class="cred-n">65%</div>
+          <div class="cred-l">AI Feature Adoption — Q1 Post-Launch</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="fade-up">
+    <p class="section-kicker">What I Offer</p>
+    <h2 class="section-title">Services</h2>
+    <p class="section-sub">From generative discovery through evaluative testing and strategic synthesis — I bring senior research expertise to wherever your team needs it most.</p>
+  </div>
+
+  <div class="services-grid fade-up">
+
+    <div class="service-card featured">
+      <div class="service-icon">🧭</div>
+      <div class="service-name">Research Strategy & Roadmapping</div>
+      <p class="service-desc">Build a research function that earns a seat at the table. I partner with product and design leaders to define the questions that matter, sequence studies for maximum impact, and create a research culture that influences roadmaps.</p>
+      <ul class="service-deliverables">
+        <li>Research roadmap aligned to product quarters</li>
+        <li>Stakeholder research alignment workshops</li>
+        <li>Research ops setup and participant panel design</li>
+        <li>Insight prioritization frameworks</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🔬</div>
+      <div class="service-name">Mixed-Methods Research Execution</div>
+      <p class="service-desc">End-to-end execution of qualitative and quantitative research programs — from screener design and recruitment through analysis, synthesis, and stakeholder-ready readouts.</p>
+      <ul class="service-deliverables">
+        <li>In-depth interviews & usability testing</li>
+        <li>Qualtrics surveys & intercept studies</li>
+        <li>Diary studies & concept testing</li>
+        <li>Thematic analysis & executive readouts</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🤖</div>
+      <div class="service-name">AI & Enterprise UX Research</div>
+      <p class="service-desc">Specialized research for AI-powered products — defining trust boundaries, interaction models, and adoption conditions for AI agents, assistants, and automation in enterprise workflows.</p>
+      <ul class="service-deliverables">
+        <li>AI trust & comfort spectrum studies</li>
+        <li>Human-in-the-loop workflow research</li>
+        <li>MCP / agentic product validation</li>
+        <li>AI adoption barrier diagnostics</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🗺️</div>
+      <div class="service-name">Discovery & Generative Research</div>
+      <p class="service-desc">Uncover the problems worth solving before building begins. I lead deep-dive discovery programs that map user mental models, workflows, and unmet needs — giving product teams a solid foundation to build from.</p>
+      <ul class="service-deliverables">
+        <li>As-is journey mapping & experience audits</li>
+        <li>User segment definition & persona development</li>
+        <li>Problem framing & opportunity sizing</li>
+        <li>Cross-system workflow analysis</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <div class="service-name">Research Synthesis & Secondary Analysis</div>
+      <p class="service-desc">Transform scattered signals into coherent strategic direction. I synthesize existing research, behavioral data, and stakeholder knowledge into prioritized, decision-ready insight frameworks.</p>
+      <ul class="service-deliverables">
+        <li>Cross-study meta-analysis</li>
+        <li>Behavioral & clickstream data interpretation</li>
+        <li>AI-assisted qualitative synthesis</li>
+        <li>Research repository structuring</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">✨</div>
+      <div class="service-name">Custom Engagements</div>
+      <p class="service-desc">Have a unique research challenge that doesn't fit a standard template? I design bespoke research programs tailored to your product stage, timeline, and stakeholder context — from rapid sprints to multi-quarter partnerships.</p>
+      <ul class="service-deliverables">
+        <li>Research team mentorship & coaching</li>
+        <li>Executive research communication workshops</li>
+        <li>Research framework design for new products</li>
+        <li>Rapid 2-week diagnostic sprints</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW I WORK -->
+<section id="how">
+  <div class="fade-up">
+    <p class="section-kicker" style="color: var(--gold);">My Approach</p>
+    <h2 class="section-title light">How I Work</h2>
+    <p class="section-sub light">A structured, collaborative process — designed to move fast, stay rigorous, and land insights that actually change decisions.</p>
+  </div>
+
+  <div class="process-steps fade-up">
+    <div class="process-step">
+      <div class="step-number"><span class="step-n">01</span></div>
+      <div class="step-title">Align</div>
+      <p class="step-desc">I start by deeply understanding your product context, business objectives, and the decisions that research needs to support — not just the questions you're asking.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number"><span class="step-n">02</span></div>
+      <div class="step-title">Design</div>
+      <p class="step-desc">I build a research plan that's methodologically right-sized for your timeline and stakes — choosing the tools that will generate the clearest signal for your specific decision.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number"><span class="step-n">03</span></div>
+      <div class="step-title">Execute</div>
+      <p class="step-desc">I recruit, moderate, and analyze with rigor — running studies that are well-controlled, inclusive of diverse perspectives, and grounded in behavioral evidence, not just opinion.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number"><span class="step-n">04</span></div>
+      <div class="step-title">Activate</div>
+      <p class="step-desc">I don't just hand over a deck. I partner with your team to present insights in ways that get adopted — translating findings into product decisions, roadmap changes, and measurable outcomes.</p>
+    </div>
+  </div>
+
+  <div class="principles fade-up" style="transition-delay: 0.2s;">
+    <div class="principle">
+      <div class="principle-title">Business-first framing</div>
+      <p class="principle-desc">Every study is designed around the decisions it needs to support — not just the questions stakeholders initially ask.</p>
+    </div>
+    <div class="principle">
+      <div class="principle-title">Mixed-methods by default</div>
+      <p class="principle-desc">I combine qualitative depth with quantitative scale — because neither alone tells the whole story.</p>
+    </div>
+    <div class="principle">
+      <div class="principle-title">Insight, not just output</div>
+      <p class="principle-desc">Deliverables are designed to be decision-ready — not just thorough. I know what matters to executives and how to frame it.</p>
+    </div>
+    <div class="principle">
+      <div class="principle-title">Collaborative, not extractive</div>
+      <p class="principle-desc">I work alongside your team — sharing knowledge, building capability, and leaving your organization smarter after every engagement.</p>
+    </div>
+    <div class="principle">
+      <div class="principle-title">Speed without sacrificing rigor</div>
+      <p class="principle-desc">Product teams move fast. I design research sprints that deliver meaningful insight in days or weeks — not months.</p>
+    </div>
+    <div class="principle">
+      <div class="principle-title">Trust as a foundation</div>
+      <p class="principle-desc">Especially for AI product research — I help teams understand where users place trust, and design experiences that honor it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGEMENT MODELS -->
+<section id="engagement">
+  <div class="fade-up">
+    <p class="section-kicker">How We Can Work Together</p>
+    <h2 class="section-title">Engagement Models</h2>
+    <p class="section-sub">Whether you need a focused sprint, a long-term research partner, or someone to embed with your team — I offer flexible structures that fit your needs and budget.</p>
+  </div>
+
+  <div class="engagement-grid fade-up">
+
+    <div class="engagement-card">
+      <div class="engagement-type">Scoped Project</div>
+      <div class="engagement-name">Research Sprint</div>
+      <div class="engagement-price">$8K–$18K</div>
+      <div class="engagement-price-note">per project · 2–6 weeks</div>
+      <div class="engagement-divider"></div>
+      <p class="engagement-desc">A focused, time-boxed research engagement with a defined scope, clear deliverables, and a fast turnaround. Ideal for validating a concept, evaluating a feature, or answering a specific strategic question.</p>
+      <ul class="engagement-includes">
+        <li><span class="check">✓</span> Research plan & screener design</li>
+        <li><span class="check">✓</span> Participant recruitment & scheduling</li>
+        <li><span class="check">✓</span> 1 primary method (survey, IDIs, or UT)</li>
+        <li><span class="check">✓</span> Analysis & synthesis</li>
+        <li><span class="check">✓</span> Executive-ready readout deck</li>
+        <li><span class="check">✓</span> One stakeholder presentation</li>
+      </ul>
+      <a class="engagement-cta" href="#contact">Get a Quote</a>
+    </div>
+
+    <div class="engagement-card recommended">
+      <div class="recommended-badge">Most Popular</div>
+      <div class="engagement-type">Ongoing Partnership</div>
+      <div class="engagement-name">Research Retainer</div>
+      <div class="engagement-price">$6K–$12K</div>
+      <div class="engagement-price-note">per month · 3-month minimum</div>
+      <div class="engagement-divider"></div>
+      <p class="engagement-desc">Your embedded senior research partner — available on an ongoing basis to plan, execute, and synthesize research across multiple workstreams. Best for product teams that need consistent, strategic research support.</p>
+      <ul class="engagement-includes">
+        <li><span class="check">✓</span> Up to 3 concurrent research tracks</li>
+        <li><span class="check">✓</span> Weekly stakeholder syncs</li>
+        <li><span class="check">✓</span> Mixed-methods execution each month</li>
+        <li><span class="check">✓</span> Ongoing synthesis & insight library</li>
+        <li><span class="check">✓</span> Research roadmap management</li>
+        <li><span class="check">✓</span> Slack/Teams availability</li>
+      </ul>
+      <a class="engagement-cta" href="#contact">Start a Retainer</a>
+    </div>
+
+    <div class="engagement-card">
+      <div class="engagement-type">Team Integration</div>
+      <div class="engagement-name">Embedded Researcher</div>
+      <div class="engagement-price">$120–$175</div>
+      <div class="engagement-price-note">per hour · flexible commitment</div>
+      <div class="engagement-divider"></div>
+      <p class="engagement-desc">Full-time or part-time integration into your product team — attending standups, planning sessions, and working directly in your tools and workflow. Ideal for teams scaling research capacity or covering a gap.</p>
+      <ul class="engagement-includes">
+        <li><span class="check">✓</span> Embedded in your team rituals</li>
+        <li><span class="check">✓</span> Agile-compatible research delivery</li>
+        <li><span class="check">✓</span> Tool & workflow integration</li>
+        <li><span class="check">✓</span> Research mentorship for team members</li>
+        <li><span class="check">✓</span> Flexible hours — 20 to 40/week</li>
+        <li><span class="check">✓</span> Seamless handoff on exit</li>
+      </ul>
+      <a class="engagement-cta" href="#contact">Discuss Availability</a>
+    </div>
+
+  </div>
+
+  <p style="margin-top: 1.5rem; font-size: 0.82rem; color: var(--ink-lt); text-align: center;">All pricing is indicative. Final scope and fees are confirmed after an initial discovery call. Custom arrangements available.</p>
+</section>
+
+<!-- PAST IMPACT -->
+<section id="impact">
+  <div class="fade-up">
+    <p class="section-kicker">Anonymized Case Highlights</p>
+    <h2 class="section-title">Past Impact</h2>
+    <p class="section-sub">Selected examples of research-driven outcomes across enterprise platforms, AI products, and B2B tools. Client and product names are lightly anonymized.</p>
+  </div>
+
+  <div class="impact-grid">
+
+    <!-- FEATURED WIDE -->
+    <div class="impact-card wide fade-up">
+      <div>
+        <div class="impact-header">
+          <div>
+            <div class="impact-industry">Enterprise Tech · AI Products</div>
+            <div class="impact-scope" style="margin-top: 0.4rem;">AI Agent Strategy</div>
+          </div>
+        </div>
+        <h3 class="impact-title">Defining the Trust Boundary for an Enterprise AI Agent</h3>
+        <div class="impact-method-pills">
+          <span class="method-pill">Survey n=405</span>
+          <span class="method-pill">IDIs n=11</span>
+          <span class="method-pill">Thematic Analysis</span>
+        </div>
+        <p class="impact-context">A large enterprise platform was planning to ship an AI agent to manage complex internal workflows for 6,800+ users across 3 global regions. Before building, they needed to know: would users trust it, and for what? A two-phase mixed-methods study (large-scale survey followed by in-depth scenario-based interviews) defined exactly where trust was high, where it dropped off, and what conditions users required before they would accept autonomous AI action.</p>
+      </div>
+      <div>
+        <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div class="impact-industry" style="margin-bottom: 1rem;">Key Outcomes</div>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem;">
+              <li style="font-size: 0.85rem; color: rgba(255,255,255,0.6); display: flex; gap: 0.6rem;"><span style="color: var(--gold);">→</span> Established 3-tier AI trust framework adopted directly into product roadmap</li>
+              <li style="font-size: 0.85rem; color: rgba(255,255,255,0.6); display: flex; gap: 0.6rem;"><span style="color: var(--gold);">→</span> Defined 6 prioritized AI capabilities sequenced by user comfort, not engineering preference</li>
+              <li style="font-size: 0.85rem; color: rgba(255,255,255,0.6); display: flex; gap: 0.6rem;"><span style="color: var(--gold);">→</span> Prevented premature autonomous feature launch — saving estimated 6 months of rework</li>
+              <li style="font-size: 0.85rem; color: rgba(255,255,255,0.6); display: flex; gap: 0.6rem;"><span style="color: var(--gold);">→</span> Secured executive buy-in for phased AI rollout strategy grounded in user evidence</li>
+            </ul>
+          </div>
+          <div class="impact-metrics">
+            <div class="impact-metric"><div class="impact-metric-n">6,800+</div><div class="impact-metric-l">Users represented</div></div>
+            <div class="impact-metric"><div class="impact-metric-n">78%</div><div class="impact-metric-l">Found AI agent appealing</div></div>
+            <div class="impact-metric"><div class="impact-metric-n">3</div><div class="impact-metric-l">Global regions covered</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-card fade-up" style="transition-delay: 0.05s;">
+      <div class="impact-header">
+        <div class="impact-industry">Enterprise Tech · Platform</div>
+        <div class="impact-scope">Discovery Research</div>
+      </div>
+      <h3 class="impact-title">Mapping a Fragmented Approvals Experience Across 5 Systems</h3>
+      <div class="impact-method-pills">
+        <span class="method-pill">IDIs n=19</span>
+        <span class="method-pill">Survey n=130</span>
+        <span class="method-pill">45-day sprint</span>
+      </div>
+      <p class="impact-context">A global enterprise platform asked: why is our approvals experience so frustrating? A 45-day generative research program surfaced that fragmentation — not poor design — was the root cause, reshaping the entire product strategy.</p>
+      <div class="impact-metrics">
+        <div class="impact-metric"><div class="impact-metric-n">5+</div><div class="impact-metric-l">Systems mapped</div></div>
+        <div class="impact-metric"><div class="impact-metric-n">3</div><div class="impact-metric-l">Regions covered</div></div>
+        <div class="impact-metric"><div class="impact-metric-n">Roadmap</div><div class="impact-metric-l">Priorities reset</div></div>
+      </div>
+    </div>
+
+    <div class="impact-card fade-up" style="transition-delay: 0.1s;">
+      <div class="impact-header">
+        <div class="impact-industry">Enterprise Tech · App Marketplace</div>
+        <div class="impact-scope">Evaluative Research</div>
+      </div>
+      <h3 class="impact-title">AI-Powered App Comparison Tool — From Research to 65% Adoption</h3>
+      <div class="impact-method-pills">
+        <span class="method-pill">Unmoderated UT n=79</span>
+        <span class="method-pill">5 Countries</span>
+      </div>
+      <p class="impact-context">Research validated and shaped an AI comparison tool for a 180+ app enterprise marketplace. The study influenced the executive go/no-go decision and defined the personalization design principles that drove first-quarter adoption.</p>
+      <div class="impact-metrics">
+        <div class="impact-metric"><div class="impact-metric-n">65%</div><div class="impact-metric-l">Adoption — Q1 post-launch</div></div>
+        <div class="impact-metric"><div class="impact-metric-n">+30%</div><div class="impact-metric-l">Engagement increase</div></div>
+      </div>
+    </div>
+
+    <div class="impact-card fade-up" style="transition-delay: 0.05s;">
+      <div class="impact-header">
+        <div class="impact-industry">Social Platform · Admin Tools</div>
+        <div class="impact-scope">Prototype Testing</div>
+      </div>
+      <h3 class="impact-title">Moderation Feature Research — 70%+ Adoption Post-Launch</h3>
+      <div class="impact-method-pills">
+        <span class="method-pill">Prototype Testing n=20</span>
+        <span class="method-pill">Remote Sessions</span>
+      </div>
+      <p class="impact-context">Research with Group Admins of large online communities shaped two moderation features before development. Both launched with strong adoption, a 50% improvement in approval speed, and measurably higher admin satisfaction.</p>
+      <div class="impact-metrics">
+        <div class="impact-metric"><div class="impact-metric-n">70%+</div><div class="impact-metric-l">Feature adoption at launch</div></div>
+        <div class="impact-metric"><div class="impact-metric-n">50%</div><div class="impact-metric-l">Faster post approvals</div></div>
+      </div>
+    </div>
+
+    <div class="impact-card fade-up" style="transition-delay: 0.1s;">
+      <div class="impact-header">
+        <div class="impact-industry">Enterprise Tech · Internal Platform</div>
+        <div class="impact-scope">Strategic Research</div>
+      </div>
+      <h3 class="impact-title">Research-Driven Platform Decommission — 20,000 Engineers Migrated</h3>
+      <div class="impact-method-pills">
+        <span class="method-pill">Intercept Survey n=792</span>
+        <span class="method-pill">IDIs n=20</span>
+      </div>
+      <p class="impact-context">Research revealed that a widely-used engineering knowledge platform was providing minimal value relative to its maintenance cost. The recommendation to decommission — backed by behavioral and attitudinal evidence — was adopted in full, enabling migration to a more scalable architecture.</p>
+      <div class="impact-metrics">
+        <div class="impact-metric"><div class="impact-metric-n">20k</div><div class="impact-metric-l">Users migrated</div></div>
+        <div class="impact-metric"><div class="impact-metric-n">Option A</div><div class="impact-metric-l">Adopted by leadership</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testimonial-grid">
+    <div class="testimonial fade-up">
+      <p class="testimonial-quote">"Kenny doesn't just bring findings — he brings strategic clarity. The research he led fundamentally changed how we thought about our AI roadmap."</p>
+      <div class="testimonial-attr">Senior Product Manager · Enterprise Tech</div>
+    </div>
+    <div class="testimonial fade-up" style="transition-delay: 0.1s;">
+      <p class="testimonial-quote">"What sets Kenny apart is his ability to translate complex user behavior into decisions executives actually act on. He speaks both languages fluently."</p>
+      <div class="testimonial-attr">Design Director · B2B Platform</div>
+    </div>
+    <div class="testimonial fade-up" style="transition-delay: 0.2s;">
+      <p class="testimonial-quote">"In 45 days, Kenny gave us more clarity on our approvals experience than we'd gathered in two years of internal feedback. The research paid for itself many times over."</p>
+      <div class="testimonial-attr">VP of Product · Enterprise Software</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-left fade-up">
+    <p class="section-kicker" style="color: var(--gold);">Work Together</p>
+    <h2 class="section-title">Let's Talk</h2>
+    <p class="contact-blurb">Whether you have a clear research need or just a nagging product question you can't answer yet — I'd love to hear what you're working on. Most engagements start with a free 30-minute discovery call.</p>
+    <div class="contact-details">
+      <a class="contact-row" href="mailto:kehinde.bangudu@gmail.com">
+        <div class="contact-row-icon">✉</div>
+        kehinde.bangudu@gmail.com
+      </a>
+      <a class="contact-row" href="https://www.linkedin.com/in/kennybangudu" target="_blank">
+        <div class="contact-row-icon">in</div>
+        linkedin.com/in/kennybangudu
+      </a>
+      <a class="contact-row" href="tel:+12083104294">
+        <div class="contact-row-icon">📞</div>
+        (208) 310-4294
+      </a>
+      <a class="contact-row" href="index.html">
+        <div class="contact-row-icon">🗂</div>
+        View Full Research Portfolio →
+      </a>
+    </div>
+  </div>
+
+  <div class="contact-form-box fade-up" style="transition-delay: 0.15s;">
+    <div class="form-title">Start the Conversation</div>
+    <p class="form-sub">I typically respond within 24 hours.</p>
+
+    <div class="form-group">
+      <label>Your Name</label>
+      <input type="text" placeholder="Jane Smith" />
+    </div>
+    <div class="form-group">
+      <label>Company / Organization</label>
+      <input type="text" placeholder="Acme Inc." />
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" placeholder="jane@acme.com" />
+    </div>
+    <div class="form-group">
+      <label>Engagement Type</label>
+      <select>
+        <option value="">Select one…</option>
+        <option>Research Sprint (Project-based)</option>
+        <option>Research Retainer (Ongoing)</option>
+        <option>Embedded Researcher</option>
+        <option>Custom / Not Sure Yet</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Tell Me About Your Research Need</label>
+      <textarea placeholder="What are you trying to learn or decide? What's the timeline?"></textarea>
+    </div>
+    <button class="form-submit" onclick="handleSubmit()">Send Message →</button>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-brand">Kennitivity's Consulting</span>
+  <span>&copy; 2026 Kenny Bangudu. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="index.html">Research Portfolio</a>
+    <a href="mailto:kehinde.bangudu@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/kennybangudu" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll animations
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Form submit handler
+  function handleSubmit() {
+    const btn = document.querySelector('.form-submit');
+    const inputs = document.querySelectorAll('.form-group input, .form-group select, .form-group textarea');
+    let valid = true;
+    inputs.forEach(inp => {
+      if (!inp.value.trim()) valid = false;
+    });
+    if (!valid) {
+      btn.textContent = 'Please fill in all fields';
+      btn.style.background = '#8A7D6A';
+      setTimeout(() => {
+        btn.textContent = 'Send Message →';
+        btn.style.background = '';
+      }, 2500);
+      return;
+    }
+    btn.textContent = '✓ Message Sent!';
+    btn.style.background = '#3D7A78';
+    setTimeout(() => {
+      btn.textContent = 'Send Message →';
+      btn.style.background = '';
+      inputs.forEach(inp => inp.value = '');
+    }, 3000);
+  }
+</script>
+</body>
+</html>
