@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>App Marketplace AI Agent Survey | Kenny Bangudu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --sand:    #FAF7F2;
+  --warm:    #F2EDE4;
+  --clay:    #C47E5A;
+  --clay-lt: #D9A07E;
+  --ink:     #2C2218;
+  --ink-md:  #5C4D3E;
+  --ink-lt:  #9A8878;
+  --cream:   #FDF9F5;
+  --teal:    #3D7A78;
+  --accent:  #E8724A;
+  --border:  #E4DDD4;
+  --r:       12px;
+  --r-lg:    20px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--sand); color: var(--ink); font-size: 16px; line-height: 1.7; }
+a { color: inherit; }
+
+.cs-nav { position: sticky; top: 0; z-index: 100; background: rgba(250,247,242,0.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 6%; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.cs-nav-back { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--ink-md); font-size: 0.875rem; font-weight: 500; }
+.cs-nav-back:hover { color: var(--clay); }
+.cs-nav-logo { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 600; text-decoration: none; color: var(--ink); }
+
+.cs-hero { background: var(--warm); padding: 5rem 6% 4rem; position: relative; overflow: hidden; }
+.cs-hero::before { content: ''; position: absolute; top: -140px; right: -140px; width: 420px; height: 420px; background: radial-gradient(circle, rgba(196,126,90,0.14) 0%, transparent 70%); border-radius: 50%; }
+.cs-eyebrow { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--clay); margin-bottom: 1rem; position: relative; }
+.cs-hero h1 { font-family: 'Lora', serif; font-size: clamp(2.1rem, 4.4vw, 3.4rem); line-height: 1.15; max-width: 900px; margin-bottom: 1.2rem; position: relative; }
+.cs-hero-sub { font-size: 1.1rem; color: var(--ink-md); max-width: 720px; margin-bottom: 2.5rem; position: relative; }
+.cs-meta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; position: relative; }
+.cs-meta-pill { background: var(--cream); border: 1px solid var(--border); border-radius: 40px; padding: 0.5rem 1.1rem; font-size: 0.82rem; color: var(--ink-md); }
+.cs-meta-pill b { color: var(--ink); font-weight: 600; }
+
+.cs-snapshot { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; padding: 3.5rem 6%; background: var(--sand); }
+.cs-snap-card { background: var(--cream); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 1.75rem; }
+.cs-snap-card .icon { font-size: 1.3rem; margin-bottom: 0.85rem; display: block; }
+.cs-snap-card h3 { font-family: 'Lora', serif; font-size: 1.05rem; margin-bottom: 0.6rem; color: var(--ink); }
+.cs-snap-card p { font-size: 0.9rem; color: var(--ink-md); }
+
+.cs-section { padding: 4rem 6%; max-width: 980px; margin: 0 auto; }
+.cs-section.full { max-width: none; }
+.cs-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--clay); margin-bottom: 0.75rem; }
+.cs-section h2 { font-family: 'Lora', serif; font-size: clamp(1.6rem, 2.8vw, 2.1rem); margin-bottom: 1.5rem; color: var(--ink); }
+.cs-section p { color: var(--ink-md); margin-bottom: 1.1rem; font-size: 1.02rem; }
+.cs-callout { background: var(--warm); border-left: 3px solid var(--clay); border-radius: 0 var(--r) var(--r) 0; padding: 1.25rem 1.5rem; margin: 1.75rem 0; }
+.cs-callout p { margin-bottom: 0; font-style: italic; color: var(--ink); }
+
+.cs-timeline { display: flex; flex-direction: column; gap: 0; margin-top: 2rem; }
+.cs-tl-item { display: grid; grid-template-columns: 110px 12px 1fr; gap: 0 1.5rem; padding-bottom: 2rem; position: relative; }
+.cs-tl-week { font-size: 0.8rem; font-weight: 700; color: var(--clay); padding-top: 0.15rem; }
+.cs-tl-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--clay); margin-top: 0.3rem; position: relative; }
+.cs-tl-dot::after { content: ''; position: absolute; top: 12px; left: 5px; width: 2px; height: calc(100% + 1.7rem - 12px); background: var(--border); }
+.cs-tl-item:last-child .cs-tl-dot::after { display: none; }
+.cs-tl-title { font-weight: 600; color: var(--ink); margin-bottom: 0.3rem; font-size: 0.98rem; }
+.cs-tl-desc { font-size: 0.9rem; color: var(--ink-md); }
+.cs-tl-phase-badge { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: rgba(61,122,120,0.1); color: var(--teal); padding: 0.15rem 0.55rem; border-radius: 4px; margin-bottom: 0.4rem; }
+
+.cs-method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+.cs-method-card { background: var(--cream); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 1.75rem; }
+.cs-method-card h4 { font-family: 'Lora', serif; font-style: italic; color: var(--clay); font-size: 1.15rem; margin-bottom: 0.9rem; }
+.cs-method-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.cs-method-card li { font-size: 0.9rem; color: var(--ink-md); padding-left: 1.1rem; position: relative; }
+.cs-method-card li::before { content: '—'; position: absolute; left: 0; color: var(--clay-lt); }
+
+.cs-finding { background: var(--cream); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 2rem; margin-bottom: 1.5rem; }
+.cs-finding-num { font-family: 'Lora', serif; font-size: 0.85rem; color: var(--clay); font-weight: 600; margin-bottom: 0.6rem; }
+.cs-finding h3 { font-family: 'Lora', serif; font-size: 1.25rem; margin-bottom: 0.85rem; }
+.cs-finding p { margin-bottom: 1rem; }
+.cs-finding-stat { display: inline-block; background: var(--warm); border-radius: var(--r); padding: 0.5rem 1rem; font-size: 0.85rem; color: var(--ink); margin-bottom: 1rem; }
+.cs-finding-stat b { color: var(--clay); font-family: 'Lora', serif; font-size: 1.05rem; }
+
+.cs-quote-block { border-left: 3px solid var(--clay-lt); padding-left: 1.5rem; margin: 1.5rem 0; }
+.cs-quote-block p { font-family: 'Lora', serif; font-style: italic; font-size: 1.1rem; color: var(--ink); margin-bottom: 0.5rem; }
+.cs-quote-attr { font-size: 0.82rem; color: var(--ink-lt); }
+
+.cs-tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2rem; }
+.cs-tier { border-radius: var(--r-lg); padding: 1.75rem; border: 1px solid var(--border); position: relative; overflow: hidden; }
+.cs-tier::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; }
+.cs-tier.t1 { background: rgba(61,122,120,0.06); }
+.cs-tier.t1::before { background: var(--teal); }
+.cs-tier.t2 { background: rgba(196,126,90,0.06); }
+.cs-tier.t2::before { background: var(--clay); }
+.cs-tier.t3 { background: rgba(232,114,74,0.06); }
+.cs-tier.t3::before { background: var(--accent); }
+.cs-tier-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-lt); margin-bottom: 0.4rem; }
+.cs-tier h4 { font-family: 'Lora', serif; font-size: 1.15rem; margin-bottom: 0.6rem; }
+.cs-tier .comfort { font-family: 'Lora', serif; font-size: 1.8rem; color: var(--ink); margin-bottom: 0.3rem; }
+.cs-tier .comfort span { font-size: 0.85rem; color: var(--ink-lt); font-family: 'DM Sans', sans-serif; }
+.cs-tier p { font-size: 0.87rem; color: var(--ink-md); margin-bottom: 0.75rem; }
+.cs-tier .status { display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 4px; }
+.cs-tier.t1 .status { background: rgba(61,122,120,0.15); color: var(--teal); }
+.cs-tier.t2 .status { background: rgba(196,126,90,0.18); color: var(--clay); }
+.cs-tier.t3 .status { background: rgba(232,114,74,0.15); color: var(--accent); }
+
+.cs-roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2rem; }
+.cs-road-col { border-radius: var(--r-lg); border: 1px solid var(--border); overflow: hidden; }
+.cs-road-head { padding: 1rem 1.25rem; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.cs-road-col.now .cs-road-head { background: var(--teal); color: #fff; }
+.cs-road-col.next .cs-road-head { background: var(--clay); color: #fff; }
+.cs-road-col.later .cs-road-head { background: var(--ink-lt); color: #fff; }
+.cs-road-body { padding: 1.25rem; background: var(--cream); display: flex; flex-direction: column; gap: 0.9rem; }
+.cs-road-item { font-size: 0.87rem; color: var(--ink-md); padding-left: 1rem; position: relative; }
+.cs-road-item::before { content: '→'; position: absolute; left: 0; color: var(--clay); }
+
+.cs-impact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2rem; }
+.cs-impact-card { text-align: center; background: var(--cream); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 1.75rem 1rem; }
+.cs-impact-card .n { font-family: 'Lora', serif; font-size: 2.1rem; color: var(--clay); font-weight: 600; }
+.cs-impact-card .l { font-size: 0.82rem; color: var(--ink-lt); margin-top: 0.3rem; }
+
+.cs-bar-chart { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+.cs-bar-row { display: grid; grid-template-columns: 200px 1fr 70px; align-items: center; gap: 1rem; }
+.cs-bar-label { font-size: 0.88rem; color: var(--ink-md); }
+.cs-bar-track { background: var(--warm); border-radius: 40px; height: 14px; overflow: hidden; }
+.cs-bar-fill { height: 100%; border-radius: 40px; background: var(--clay); }
+.cs-bar-val { font-size: 0.85rem; font-weight: 600; color: var(--ink); text-align: right; }
+
+.cs-reflect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+.cs-reflect-card { border-radius: var(--r-lg); padding: 1.75rem; }
+.cs-reflect-card.worked { background: rgba(61,122,120,0.07); border: 1px solid rgba(61,122,120,0.2); }
+.cs-reflect-card.differ { background: rgba(196,126,90,0.07); border: 1px solid rgba(196,126,90,0.2); }
+.cs-reflect-card h4 { font-family: 'Lora', serif; font-size: 1.05rem; margin-bottom: 0.85rem; }
+.cs-reflect-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.cs-reflect-card li { font-size: 0.88rem; color: var(--ink-md); padding-left: 1.1rem; position: relative; }
+.cs-reflect-card li::before { content: '◆'; position: absolute; left: 0; font-size: 0.6rem; top: 0.35rem; color: var(--clay); }
+
+.cs-endcap { background: var(--ink); color: rgba(255,255,255,0.85); padding: 4.5rem 6%; text-align: center; }
+.cs-endcap h2 { font-family: 'Lora', serif; color: #fff; font-size: 1.8rem; margin-bottom: 1rem; }
+.cs-endcap p { color: rgba(255,255,255,0.6); max-width: 500px; margin: 0 auto 2rem; }
+.cs-endcap-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+.cs-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.75rem; border-radius: 40px; text-decoration: none; font-size: 0.88rem; font-weight: 600; }
+.cs-btn-primary { background: var(--clay); color: #fff; }
+.cs-btn-outline { background: transparent; border: 1.5px solid rgba(255,255,255,0.3); color: #fff; }
+
+footer.cs-footer { background: var(--ink); color: rgba(255,255,255,0.4); text-align: center; padding: 1.5rem; font-size: 0.78rem; }
+
+@media (max-width: 900px) {
+  .cs-snapshot, .cs-method-grid, .cs-tiers, .cs-roadmap, .cs-impact-grid, .cs-reflect-grid { grid-template-columns: 1fr; }
+  .cs-tl-item { grid-template-columns: 80px 10px 1fr; }
+  .cs-bar-row { grid-template-columns: 130px 1fr 50px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="cs-nav">
+  <a class="cs-nav-back" href="index.html#work">&larr; Back to Portfolio</a>
+  <a class="cs-nav-logo" href="index.html">Kenny Bangudu</a>
+</nav>
+
+<header class="cs-hero">
+  <p class="cs-eyebrow">Case Study &middot; Cisco Internal App Marketplace</p>
+  <h1>Scoping an AI Agent for a 230+ App Marketplace, Before a Line of Code Shipped</h1>
+  <p class="cs-hero-sub">A 233-response survey that answered a scope question before it became a build mistake: which parts of an AI-powered discovery experience would employees actually trust, and which would quietly go unused?</p>
+  <div class="cs-meta-row">
+    <span class="cs-meta-pill"><b>Role:</b> Lead UX Researcher</span>
+    <span class="cs-meta-pill"><b>Timeline:</b> Apr 2026 &middot; 3 weeks</span>
+    <span class="cs-meta-pill"><b>Method:</b> Qualtrics Survey (n=233)</span>
+    <span class="cs-meta-pill"><b>Partners:</b> Product, Design</span>
+  </div>
+</header>
+
+<section class="cs-snapshot">
+  <div class="cs-snap-card">
+    <span class="icon">🧭</span>
+    <h3>The Problem</h3>
+    <p>The marketplace team wanted an AI agent to help employees navigate 230+ internal apps, but had no evidence for where "helpful assistant" ended and "overstepping" began.</p>
+  </div>
+  <div class="cs-snap-card">
+    <span class="icon">📊</span>
+    <h3>My Role</h3>
+    <p>I designed the survey, adapting a trust-tier framework validated weeks earlier in a parallel study, fielded it to active marketplace users, and delivered a scope-ready readout.</p>
+  </div>
+  <div class="cs-snap-card">
+    <span class="icon">🔒</span>
+    <h3>The Outcome</h3>
+    <p>v1 scope was locked to transparent, explainable "inform" and "recommend" capabilities — deferring autonomous action to a later, trust-gated phase.</p>
+  </div>
+</section>
+
+<section class="cs-section">
+  <p class="cs-label">Background</p>
+  <h2>An AI agent for 230+ apps needs a scope, not just a green light</h2>
+  <p>The internal app marketplace had grown to 230+ tools, and an earlier research effort (my <a href="index.html#work" style="color: var(--clay); font-weight: 600;">Apps Category Rationalization study</a>) had already cleaned up how those apps were organized. The next question on the roadmap was an AI agent to help employees search, compare, and get recommendations — but "AI agent" meant something different to every stakeholder in the room: a chatbot to some, an autonomous provisioning system to others.</p>
+  <p>Rather than build a broad concept and test reactions to it, I had a faster option available: a three-tier trust framework I'd validated weeks earlier in the Approvals AI Agent research — informing, recommending, and acting — had already proven itself as a reliable way to predict where AI comfort would hold and where it would break down. This study existed to test whether that same pattern held for a completely different task (app discovery, not approvals), and if so, to use it to lock scope fast.</p>
+  <div class="cs-callout">
+    <p>The risk wasn't building an AI agent that failed outright — it was building one so cautious it added no value, or so ambitious it got ignored. Scope had to be evidence-based on both ends.</p>
+  </div>
+</section>
+
+<section class="cs-section full" style="background: var(--warm); max-width: none; padding: 4rem 6%;">
+  <div style="max-width: 980px; margin: 0 auto;">
+    <p class="cs-label">Research Process</p>
+    <h2>Three weeks, borrowing a validated framework instead of starting cold</h2>
+    <div class="cs-timeline">
+      <div class="cs-tl-item">
+        <div class="cs-tl-week">Week 1</div>
+        <div class="cs-tl-dot"></div>
+        <div>
+          <div class="cs-tl-phase-badge">Design</div>
+          <div class="cs-tl-title">Adapting a validated framework to a new domain</div>
+          <div class="cs-tl-desc">Rebuilt the inform/recommend/act comfort-scale approach from the Approvals AI Agent research around marketplace-specific tasks: search assistance, personalized recommendations, comparison summaries, and auto-request/install on the user's behalf.</div>
+        </div>
+      </div>
+      <div class="cs-tl-item">
+        <div class="cs-tl-week">Week 2</div>
+        <div class="cs-tl-dot"></div>
+        <div>
+          <div class="cs-tl-phase-badge">Field</div>
+          <div class="cs-tl-title">Targeted distribution to active users</div>
+          <div class="cs-tl-desc">Distributed to employees who had browsed or installed an app in the past 90 days, rather than the full employee base — prioritizing signal from people who actually use the discovery experience today.</div>
+        </div>
+      </div>
+      <div class="cs-tl-item">
+        <div class="cs-tl-week">Week 3</div>
+        <div class="cs-tl-dot"></div>
+        <div>
+          <div class="cs-tl-phase-badge">Analyze &amp; Decide</div>
+          <div class="cs-tl-title">Analysis, readout, and scope lock</div>
+          <div class="cs-tl-desc">Ran quantitative and cross-tab analysis by role and tenure, coded open-ends for trust drivers, and delivered a readout that let product lock v1 scope in the same week — a notably fast research-to-decision cycle enabled by not having to derive a trust model from scratch.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <p class="cs-label">Methodology</p>
+  <h2>Reusing a validated model, testing it against a new task</h2>
+  <p>I deliberately didn't treat this as a from-scratch discovery study. The Approvals AI Agent research had already shown that comfort with AI drops in a predictable step pattern as it moves from informing to acting — but that pattern had only been validated for one kind of task (approval decisions). This survey existed to test whether the same structure held for a very different kind of task: helping someone find and evaluate software.</p>
+  <div class="cs-method-grid">
+    <div class="cs-method-card">
+      <h4>Sample</h4>
+      <ul>
+        <li>Distributed to employees active in the marketplace within the past 90 days</li>
+        <li>233 completes, segmented by role, tenure, and region for cross-tab analysis</li>
+        <li>Screened for at least one prior app search, comparison, or install</li>
+      </ul>
+    </div>
+    <div class="cs-method-card">
+      <h4>Instrument</h4>
+      <ul>
+        <li>Current discovery behavior and pain points</li>
+        <li>Capability comfort scale, reusing the inform / recommend / act tiering</li>
+        <li>Open-end: "What would make you trust an AI recommendation here?"</li>
+        <li>Interaction model preference: conversational assistant vs. inline suggestions vs. proactive notifications</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section full" style="max-width: none; padding: 4rem 6% 5rem;">
+  <div style="max-width: 980px; margin: 0 auto;">
+    <p class="cs-label">Key Findings</p>
+    <h2>The framework held — with one new twist</h2>
+
+    <div class="cs-finding">
+      <div class="cs-finding-num">Finding 01</div>
+      <h3>The trust ceiling for information is high; for action, it's near the floor</h3>
+      <div class="cs-finding-stat"><b>75%</b> comfortable with AI for search/info retrieval &mdash; comfort with AI auto-requesting access on their behalf drops to <b>~14%</b></div>
+      <p>This confirmed the same step-down pattern seen in the Approvals research, in a completely different task domain — strong evidence this isn't an approvals-specific quirk, but a broader pattern in how employees relate to AI taking action on their behalf.</p>
+      <div class="cs-bar-chart">
+        <div class="cs-bar-row"><div class="cs-bar-label">Search / info retrieval</div><div class="cs-bar-track"><div class="cs-bar-fill" style="width: 75%;"></div></div><div class="cs-bar-val">75%</div></div>
+        <div class="cs-bar-row"><div class="cs-bar-label">Personalized recommendations</div><div class="cs-bar-track"><div class="cs-bar-fill" style="width: 46%;"></div></div><div class="cs-bar-val">46%</div></div>
+        <div class="cs-bar-row"><div class="cs-bar-label">Comparison summaries</div><div class="cs-bar-track"><div class="cs-bar-fill" style="width: 28%;"></div></div><div class="cs-bar-val">28%</div></div>
+        <div class="cs-bar-row"><div class="cs-bar-label">Auto-request on user's behalf</div><div class="cs-bar-track"><div class="cs-bar-fill" style="width: 14%;"></div></div><div class="cs-bar-val">14%</div></div>
+      </div>
+    </div>
+
+    <div class="cs-finding">
+      <div class="cs-finding-num">Finding 02</div>
+      <h3>Recommendations were the most wanted feature — but trust was conditional, not automatic</h3>
+      <div class="cs-finding-stat"><b>46%</b> ranked personalized recommendations as their single top-desired capability &mdash; the largest vote share of any option</div>
+      <p>Personalized recommendations beat both comparison tools and general search chat as the most-wanted capability. But open-ends made clear this wasn't unconditional enthusiasm: trust depended entirely on explainability. Employees wanted to see <em>why</em> an app was suggested, not just receive a suggestion.</p>
+      <div class="cs-quote-block">
+        <p>"I would use it constantly if it just helped me find the right tool faster. I do not want it choosing for me."</p>
+        <div class="cs-quote-attr">Senior Engineer &middot; AMER Region</div>
+      </div>
+    </div>
+
+    <div class="cs-finding">
+      <div class="cs-finding-num">Finding 03</div>
+      <h3>Users want a navigator, not a gatekeeper</h3>
+      <p>Open-end coding surfaced a consistent mental model: employees wanted AI to act as a fast, well-informed guide — never a decision-maker standing between them and the app catalog. This language closely echoed the "Investigator" persona from the Approvals research (wanting full context, distrusting anything that felt like hidden filtering), reinforcing that this trust pattern isn't specific to one team's tool — it appears to be a broader organizational expectation of AI.</p>
+    </div>
+
+    <div class="cs-finding">
+      <div class="cs-finding-num">Finding 04</div>
+      <h3>Newer employees showed meaningfully higher comfort with higher-tier AI action</h3>
+      <p>Cross-tab analysis by tenure found employees with less than a year at the company were notably more comfortable with higher-tier AI capabilities than tenured employees. This opened a concrete option product hadn't previously considered: a tenure-segmented pilot, rather than an all-or-nothing rollout.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section full" style="background: var(--ink); color: #fff; max-width: none; padding: 4.5rem 6%;">
+  <div style="max-width: 980px; margin: 0 auto;">
+    <p class="cs-label" style="color: var(--clay-lt);">The Framework, Applied</p>
+    <h2 style="color: #fff;">The same three tiers, a different domain</h2>
+    <p style="color: rgba(255,255,255,0.65); max-width: 700px;">Reusing the trust-tier structure from the Approvals AI Agent research meant product didn't have to relitigate "should the AI just do it" from first principles — the tiers already carried organizational credibility.</p>
+    <div class="cs-tiers">
+      <div class="cs-tier t1">
+        <div class="cs-tier-label">Tier 1</div>
+        <h4>Inform</h4>
+        <div class="comfort">75% <span>comfortable</span></div>
+        <p>Conversational and inline search assistance, plain-language app descriptions, "what does this app actually do."</p>
+        <span class="status">Build v1</span>
+      </div>
+      <div class="cs-tier t2">
+        <div class="cs-tier-label">Tier 2</div>
+        <h4>Recommend</h4>
+        <div class="comfort">46% <span>top choice</span></div>
+        <p>Personalized recommendations and comparison summaries — but only shipped with a visible, mandatory "why this" rationale attached.</p>
+        <span class="status">Build v1, transparency-gated</span>
+      </div>
+      <div class="cs-tier t3">
+        <div class="cs-tier-label">Tier 3</div>
+        <h4>Act</h4>
+        <div class="comfort">14% <span>comfortable</span></div>
+        <p>Auto-requesting access or auto-installing apps on the user's behalf without an explicit action.</p>
+        <span class="status">Held from v1</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <p class="cs-label">Recommendations</p>
+  <h2>Locking v1 to what the data supported, not what was easiest to build</h2>
+  <div class="cs-roadmap">
+    <div class="cs-road-col now">
+      <div class="cs-road-head">Now &middot; v1 Scope</div>
+      <div class="cs-road-body">
+        <div class="cs-road-item">Conversational and inline search assistant (Tier 1)</div>
+        <div class="cs-road-item">Personalized recommendations with a mandatory, visible "why this" rationale (Tier 2, transparency-gated)</div>
+        <div class="cs-road-item">AI-generated side-by-side comparison summaries</div>
+      </div>
+    </div>
+    <div class="cs-road-col next">
+      <div class="cs-road-head">Next</div>
+      <div class="cs-road-body">
+        <div class="cs-road-item">Tenure-segmented pilot of higher-tier capabilities, starting with the newer-hire cohort where comfort was highest</div>
+        <div class="cs-road-item">In-product feedback loop letting users correct or tune recommendation rationale, compounding trust over successive uses</div>
+      </div>
+    </div>
+    <div class="cs-road-col later">
+      <div class="cs-road-head">Later</div>
+      <div class="cs-road-body">
+        <div class="cs-road-item">Opt-in auto-request / auto-provisioning workflows (Tier 3)</div>
+        <div class="cs-road-item">Gated behind a recurring trust-tracking pulse survey before any wider rollout, mirroring the automation threshold model used on Approvals</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <p class="cs-label">Outcomes &amp; Impact</p>
+  <h2>A scope decision made in days, not quarters</h2>
+  <div class="cs-impact-grid">
+    <div class="cs-impact-card"><div class="n">233</div><div class="l">Completed responses from active marketplace users</div></div>
+    <div class="cs-impact-card"><div class="n">1 week</div><div class="l">From readout to locked v1 scope</div></div>
+    <div class="cs-impact-card"><div class="n">2 for 2</div><div class="l">Domains where the trust-tier framework held</div></div>
+  </div>
+  <p style="margin-top: 2rem;">This research kept the AI agent's v1 scope locked to Tier 1 (informing) plus a transparency-gated Tier 2 (recommending) — preventing the team from over-investing in autonomous provisioning features the data clearly showed weren't trusted yet, while still shipping the single most-requested capability (personalized recommendations) rather than playing it too safe. Because the trust-tier language was already validated on a separate team's research, product and design moved from findings to a locked roadmap decision in the same week — a research-to-decision cycle considerably faster than the six weeks the original framework took to establish. As of this study, the AI agent had not yet shipped; the framework's real-world adoption numbers will be the subject of a post-launch follow-up.</p>
+</section>
+
+<section class="cs-section">
+  <p class="cs-label">Reflection</p>
+  <h2>What I'd repeat, and what I'd change</h2>
+  <div class="cs-reflect-grid">
+    <div class="cs-reflect-card worked">
+      <h4>What worked</h4>
+      <ul>
+        <li>Adapting an already-validated framework rather than building from scratch let the team move from research to a locked scope decision in about a third of the time the original study took</li>
+        <li>Segmenting the sample to active marketplace users only (not the full employee base) meant every response came from someone with real, recent context for the questions being asked</li>
+        <li>Having a second, independent domain confirm the same trust-tier pattern gave leadership meaningfully more confidence than a single study could have on its own</li>
+      </ul>
+    </div>
+    <div class="cs-reflect-card differ">
+      <h4>What I'd do differently</h4>
+      <ul>
+        <li>I'd pair the survey with a small number of quick unmoderated concept tests of the "why this recommendation" explainability UI — the open-ends made clear explainability is the trust hinge, but a survey alone can't tell you which specific explanation format (source-based, peer-based, role-based) will actually land</li>
+        <li>I'd build the tenure-segmented pilot design into this study's scope from the start, rather than flagging it as a "next" recommendation for a future study to pick up</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="cs-endcap">
+  <h2>Related work</h2>
+  <p>This study's trust-tier framework was adapted directly from the Approvals AI Agent research a few weeks earlier.</p>
+  <div class="cs-endcap-links">
+    <a class="cs-btn cs-btn-primary" href="case-study-approvals-ai-agent.html">View that case study &rarr;</a>
+    <a class="cs-btn cs-btn-outline" href="index.html#work">Back to all work</a>
+  </div>
+</div>
+
+<footer class="cs-footer">&copy; 2026 Kenny Bangudu &mdash; Senior UX Researcher &mdash; Tacoma, WA</footer>
+
+</body>
+</html>

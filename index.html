@@ -790,6 +790,7 @@
 <script>
 const cases = {
   'approvals-mcp-idi': {
+    fullCaseStudyUrl: 'case-study-approvals-ai-agent.html',
     eyebrow: 'Enterprise Approvals Platform · April 2026 · In-Depth Interviews · Phase II',
     title: 'Approvals AI Agent - Validation IDI Study',
     subtitle: 'Phase II qualitative study (n=11) validating survey signals and defining the interaction model for the Approvals AI agent',
@@ -828,6 +829,7 @@ const cases = {
     ],
   },
     'approvals-mcp': {
+      fullCaseStudyUrl: 'case-study-approvals-ai-agent.html',
       roleTitle: 'Lead UX Researcher - Phase I',
       role: 'I owned the end-to-end research process - from defining the research questions with the product team to designing the Qualtrics survey instrument, managing distribution to 6,815 employees, conducting quantitative and cross-tab analysis, synthesizing open-ended qualitative feedback, and delivering the executive readout. I also designed the channel preference ranking methodology that surfaced the channel preference finding.',
       lessons: [
@@ -1023,6 +1025,7 @@ const cases = {
     outcome: 'Both features launched with strong adoption. The the moderation queue tool drove 30% more group activity and 20% higher user retention within groups. 80% of admins reported higher satisfaction, and user trust ratings increased by 25% in groups actively using the tool.',
   },
   'appstore-ai-agent': {
+    fullCaseStudyUrl: 'case-study-app-marketplace-ai-agent.html',
     eyebrow: 'Cisco internal app marketplace · April 2026 · Qualtrics Survey',
     title: 'App Marketplace AI Agent Survey',
     subtitle: '233 responses defining the scope, trust boundaries, and interaction model for an AI agent on the app marketplace',
@@ -1136,11 +1139,13 @@ function openModal(id) {
   const recsHtml = '';
   const lessonsHtml = c.lessons ? `<div class="modal-section"><h4>Lessons Learned</h4><div class="modal-lessons">${c.lessons.map(l => `<div class="modal-lesson"><span class="modal-lesson-icon">◆</span><span>${l}</span></div>`).join('')}</div></div>` : '';
   const quoteHtml = c.quote ? `<div class="modal-section"><h4>Voice of the User</h4><div class="modal-quote"><p class="modal-quote-text">"${c.quote.text}"</p><div class="modal-quote-attr">${c.quote.attr}</div></div></div>` : '';
+  const fullCaseStudyHtml = c.fullCaseStudyUrl ? `<a href="${c.fullCaseStudyUrl}" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--clay);color:#fff;padding:0.65rem 1.4rem;border-radius:40px;text-decoration:none;font-size:0.85rem;font-weight:600;margin-bottom:1.5rem;">View Full Case Study &rarr;</a>` : '';
 
   document.getElementById('modal-body').innerHTML = `
     <div class="modal-eyebrow">${c.eyebrow}</div>
     <h2 class="modal-title">${c.title}</h2>
     <p class="modal-subtitle">${c.subtitle}</p>
+    ${fullCaseStudyHtml}
     <div class="modal-section"><h4>Methods</h4><div class="modal-pills">${methodPills}</div></div>
     ${roleHtml}
     <div class="modal-section"><h4>Background</h4><p>${c.background}</p></div>
