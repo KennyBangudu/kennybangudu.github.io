@@ -1022,6 +1022,107 @@ const cases = {
     impact: [{ n: '70%', l: 'Active the moderation queue tool adoption in first 3 months' }, { n: '75%', l: 'the reminder feature adoption among active admins' }, { n: '+50%', l: 'Faster post approval speed' }],
     outcome: 'Both features launched with strong adoption. The the moderation queue tool drove 30% more group activity and 20% higher user retention within groups. 80% of admins reported higher satisfaction, and user trust ratings increased by 25% in groups actively using the tool.',
   },
+  'appstore-ai-agent': {
+    eyebrow: 'Cisco internal app marketplace · April 2026 · Qualtrics Survey',
+    title: 'App Marketplace AI Agent Survey',
+    subtitle: '233 responses defining the scope, trust boundaries, and interaction model for an AI agent on the app marketplace',
+    methods: ['Qualtrics Online Survey (n=233)', 'Quantitative Analysis', 'Cross-tab Analysis', 'Qualitative Open-end Synthesis'],
+    roleTitle: 'Lead UX Researcher',
+    role: 'I designed the survey instrument, defined the trust and comfort scales used to measure AI acceptance, managed distribution, and led the full analysis and executive readout that shaped the AI agent roadmap for the app marketplace.',
+    background: 'As the internal app marketplace team scoped an AI agent to help employees discover and evaluate apps, I led a survey study to establish what role users actually wanted AI to play - and where the line was between helpful assistance and unwanted autonomy.',
+    questions: [
+      'What tasks do employees want an AI agent to help with on the app marketplace?',
+      'How comfortable are users with AI retrieving information versus taking action on their behalf?',
+      'What would make users trust AI-generated app recommendations?',
+      'What is the ideal interaction model - conversational, inline, or something else?',
+    ],
+    insights: [
+      'Users were substantially more comfortable with AI retrieving and summarizing information than with AI taking any autonomous action',
+      'Personalized app recommendations were the single most requested capability, ahead of comparison tools or general search assistance',
+      'Trust in recommendations hinged on transparency - users wanted to understand why an app was suggested, not just that it was',
+      'Users consistently described the AI agent they wanted as a "navigator" that helps them find the right tool faster, not a decision-maker that picks for them',
+    ],
+    quote: {
+      text: 'I would use it constantly if it just helped me find the right tool faster. I do not want it choosing for me.',
+      attr: 'Senior Engineer · AMER Region',
+    },
+    impact: [
+      { n: '233', l: 'Completed responses' },
+      { n: '75%', l: 'Comfortable with AI for info retrieval' },
+      { n: '46%', l: 'Top demand: app recommendations' },
+    ],
+    outcome: 'Findings established a clear build sequence for the app marketplace AI agent roadmap: lead with transparent, explainable recommendations and comparison support, and treat any autonomous action as a later opt-in capability once trust is established.',
+    lessons: [
+      'Measuring comfort separately for "information" tasks versus "action" tasks surfaced a trust gap that a single overall comfort score would have hidden',
+      'Asking users to explain why they would or would not trust a recommendation produced more actionable design guidance than satisfaction ratings alone',
+    ],
+  },
+  'findmy': {
+    eyebrow: 'Cisco Productivity · March–April 2026 · Survey + Journey Mapping',
+    title: 'Enterprise Search Initiative - AI-Enabled Search Experience',
+    subtitle: 'Collaborative research and journey mapping defining the as-is and to-be experience for enterprise information retrieval',
+    methods: ['Qualtrics Online Survey (n=323)', 'Journey Mapping', 'Cross-functional Workshops', 'Thematic Analysis'],
+    roleTitle: 'Lead UX Researcher',
+    role: 'I designed and fielded the survey, facilitated cross-functional journey mapping workshops with stakeholders from productivity and IT teams, and synthesized the findings into an as-is/to-be journey that anchored the AI-enabled search initiative.',
+    background: 'Employees at Cisco routinely lose time re-finding content they have already seen - files, messages, and pages scattered across disconnected systems. I led a research initiative to quantify this cost and map the end-to-end search journey ahead of investment in an AI-enabled search experience.',
+    questions: [
+      'How much time do employees actually lose searching for content they have already encountered?',
+      'Where in the search journey does friction concentrate, and why?',
+      'What would an ideal AI-enabled search experience look and feel like?',
+      'What organizational and technical barriers stand in the way today?',
+    ],
+    insights: [
+      'Employees reported losing significant time each week re-finding content they knew existed but could not relocate',
+      'A meaningful share of searches ended in failure, with users abandoning the search and either recreating the content or asking a colleague directly',
+      'Friction concentrated at the point of remembering where content lived, not at the mechanics of searching itself - users needed context, not just a stronger index',
+      'Cross-functional workshop participants converged on a shared to-be vision: a single, AI-assisted entry point that understood context (recency, source, collaborators) rather than requiring users to know which system to search first',
+    ],
+    quote: {
+      text: 'I know I saw it. I just cannot remember if it was an email, a Slack message, or a doc. I end up asking someone instead of searching.',
+      attr: 'Program Manager · AMER Region',
+    },
+    impact: [
+      { n: '323', l: 'Survey respondents' },
+      { n: '92 min', l: 'Lost per employee per week' },
+      { n: '27%', l: 'Searches end in failure' },
+    ],
+    outcome: 'The as-is/to-be journey map and quantified time-loss finding became the business case anchor for the AI-enabled search initiative, aligning productivity, IT, and design stakeholders around a shared roadmap priority.',
+    lessons: [
+      'Quantifying time loss in a concrete unit (minutes per employee per week) was far more persuasive to leadership than a qualitative description of frustration',
+      'Running the journey mapping workshop with cross-functional stakeholders in the room, rather than presenting findings after the fact, made the to-be vision something the room co-owned rather than something research handed down',
+    ],
+  },
+  'approvals-q3': {
+    eyebrow: 'Enterprise Approvals Platform · April 2026 · Mixed Methods · Metrics',
+    title: 'Approvals Tool Health Report - FY26 Q3',
+    subtitle: 'Quarterly mixed-methods analysis combining click metrics, task health snapshots, and digital intercept survey data',
+    methods: ['Digital Intercept Survey', 'Product Analytics Review', 'Task Health Scoring', 'Trend Analysis'],
+    roleTitle: 'Lead UX Researcher',
+    role: 'I own the quarterly health report end-to-end - defining the health scoring methodology, pulling and interpreting product analytics, designing and fielding the digital intercept survey, and delivering the trend analysis to product leadership each quarter.',
+    background: 'With multiple AI and channel investments shipping into the Approvals platform in FY26 Q3 (including the messaging bot expansion), the product team needed a consistent way to track whether adoption and experience quality were actually improving quarter over quarter, not just whether features had shipped.',
+    questions: [
+      'Is overall platform health improving quarter over quarter, and where specifically?',
+      'How is the new messaging bot channel performing relative to existing channels?',
+      'Where is UX friction concentrated this quarter, and has it shifted since last quarter?',
+      'Which adoption trends warrant closer qualitative follow-up next quarter?',
+    ],
+    insights: [
+      'Overall platform health score improved from the prior quarter, driven primarily by gains in the newly expanded messaging bot channel',
+      'Bot-driven approvals reached a high volume within their first month live, with an approval rate that suggests users trust the channel for straightforward decisions',
+      'Task health snapshots showed friction concentrating in a small number of specific approval types rather than being evenly distributed across the platform',
+      'Digital intercept responses pointed to notification timing, not the approval interface itself, as the leading driver of dissatisfaction this quarter',
+    ],
+    impact: [
+      { n: '83→86', l: 'Overall health score Q2→Q3' },
+      { n: '6,731', l: 'Bot actions in first month' },
+      { n: '98.8%', l: 'Bot approval rate' },
+    ],
+    outcome: 'The report confirmed the messaging bot expansion as a high-performing channel worth further investment, while flagging notification timing and a small set of high-friction approval types as the priorities for Q4 - keeping the roadmap grounded in current data rather than assumptions carried over from launch.',
+    lessons: [
+      'A recurring quarterly cadence made it possible to distinguish real trend shifts from one-off noise in a way a single point-in-time study never could',
+      'Pairing quantitative health scores with a short digital intercept survey each quarter consistently surfaced the "why" behind metric movement that analytics alone could not explain',
+    ],
+  },
 };
 
 function openModal(id) {
